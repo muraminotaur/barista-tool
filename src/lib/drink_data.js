@@ -1,7 +1,6 @@
 export const drink_data = {
     "flavors": [
         {
-            "id": 1,
             "name": "Vanilla",
             "calories": 80,
             "fat": 0,
@@ -10,7 +9,6 @@ export const drink_data = {
             "sugar": 20
         },
         {
-            "id": 2,
             "name": "Caramel",
             "calories": 140,
             "fat": 3.5,
@@ -19,7 +17,6 @@ export const drink_data = {
             "sugar": 22
         },
         {
-            "id": 3,
             "name": "Irish Cream",
             "calories": 90,
             "fat": 0,
@@ -28,7 +25,6 @@ export const drink_data = {
             "sugar": 23
         },
         {
-            "id": 4,
             "name": "Coconut",
             "calories": 90,
             "fat": 0,

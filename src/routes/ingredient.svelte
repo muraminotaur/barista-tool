@@ -1,20 +1,19 @@
-<script>
+<script lang="ts">
     import { drink_data } from '$lib/drink_data';
-    let { id = 1, category = "", name = "", ounces = 0 } = $props();
+
+    let { id = "", category = "", name = "", ounces = 0, onRemoval } = $props();
 
     const types = ['flavor', 'milk', 'base'];
-    // Auxiliary variable will act as possible additonal information. 
-    // example: flavor needs to know *which* flavor it is and how many oz. Base also needs to be
-    // specified and quantified. Milk/fluid doesn't necessarily need to be quantified if the drink is a full
-    // drink. It can be $derived instead.
-    let auxiliary = $state('');
-    // entirely possible i can define the auxiliary milk control in the drink component itself. this may be easier to 
-    // write the calculation for this in drink.svelte.
+
+    function removeIngredient(){
+        //Call parent callback with the UUID of this component.
+        onRemoval?.({ id });
+    }
 </script>
 
 <div class="ingredient-container">
     <div class="info">
-        <p>{category ? category:'...'}<br/>#{id}</p>
+        <p>{category ? category:'...'}<br/>svelte UID: {id}</p>
     </div>
 
     <div class="ingredient">

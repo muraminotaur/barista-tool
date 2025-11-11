@@ -1,7 +1,11 @@
-<script>
+<script lang="ts">
 	import Ingredient from "./ingredient.svelte";
     import { drink_data } from '$lib/drink_data';
-    import { ingredients } from './shared.svelte.js';
+    import { ingredient_list_starter } from './shared.svelte';
+
+    import { uuid } from '$lib/utility';
+
+    let ingredients = $state(ingredient_list_starter);
 
     // i think the characteristics of the drink should be detailed in this file.
     // things like hot/iced/frozen, milk/no milk, etc.
@@ -11,7 +15,7 @@
     let complete_drink = $state(true);
 
     //unsure if this works because my state management isn't good enough to get this to trigger correctly.
-    function calc_nutrition_field(array, field) {
+    /*function calc_nutrition_field(array, field: string) {
         let total = 0;
         if(field === "calories") {
             //can i programmatically calculate all of these?
@@ -20,34 +24,29 @@
         array.forEach((e) => total += e[field]);
         console.log("currently calculating: " + field + ": " + total);
         return total;
-    }
+    }*/
+    let fat = 'unfinished';
+    let sodium = 'unfinished';
+    let carbs = 'unfinished';
+    let sugar = 'unfinished';
 
     let calories = $state(0);
-    calories = calc_nutrition_field(ingredients, "calories");
-    let fat = $derived(calc_nutrition_field(ingredients, "fat"));
-    let sodium = $derived(calc_nutrition_field(ingredients, "sodium"));
-    let carbs = $derived(calc_nutrition_field(ingredients, "carbs"));
-    let sugar = $derived(calc_nutrition_field(ingredients, "sugar"));
-
+   
     function addIngredient() {
         ingredients.push({
+            id: uuid(),
             category: "",
             name: "",
             ounces: 0
         });
     }
-    
 
+    function handleDeletion({ id }: {id: string}) {
+        const index = ingredients.findIndex(t => t.id === id);
+        ingredients.splice(index, 1);
 
-    // FIXME:
-    // This function receives the ID of the child ingredient.svelte component and removes it
-    // from the parent Drink.svelte component. It should do that, but currently doesn't.
-    // Deleting still pops off the top.
-    function handleDeletion(event) {
-        //const index = ingredients.indexOf(event.detail.id); //FIXME: this is flawed and doesn't search as deeply as it needs to.
-        //const index = ingredients.find(u => u.id === event.detail.id)["id"];
-        //console.log("handleDeletion() - event.detail.id: " + event.detail.id + "\nindex number: " + index);
-        //console.log("handleDeletion() - updated array: ", $state.snapshot(ingredients));
+        console.log("handle deletion reached in drink.svelte. component " + id + "\nTarget was " + id + "\nIndex was " + index);
+        console.log($state.snapshot(ingredients));
     }
 </script>
 
@@ -67,8 +66,7 @@
 
     <button aria-label="Add ingredient" onclick={addIngredient}>Add Ingredient</button>
     {#each ingredients as ingredient}
-        <!-- <Ingredient {...ingredient} on:removeIngredient={handleDeletion}/> -->
-        <Ingredient {...ingredient} on:removeIngredient={handleDeletion}/>
+        <Ingredient {...ingredient} onRemoval={handleDeletion}/>
     {/each}
     
 </div>
