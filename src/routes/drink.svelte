@@ -1,18 +1,16 @@
 <script lang="ts">
 	import Ingredient from "./ingredient.svelte";
     import { drink_data } from '$lib/drink_data';
-    import { ingredient_list_starter } from './shared.svelte';
+    import { ingredients } from './shared.svelte';
 
     import { uuid } from '$lib/utility';
-
-    let ingredients = $state(ingredient_list_starter);
 
     // i think the characteristics of the drink should be detailed in this file.
     // things like hot/iced/frozen, milk/no milk, etc.
     let size = $state(16); //size should stay a variable user-set number to account for iced/hot espresso, i.e. not complete drinks.
-    let iced = $state(true);
+    //let iced = $state(true);
     //i've changed this to a complete drink bool. i expand on this in my dev journal.
-    let complete_drink = $state(true);
+    //let complete_drink = $state(true);
 
     //unsure if this works because my state management isn't good enough to get this to trigger correctly.
     /*function calc_nutrition_field(array, field: string) {
@@ -48,6 +46,10 @@
         console.log("handle deletion reached in drink.svelte. component " + id + "\nTarget was " + id + "\nIndex was " + index);
         console.log($state.snapshot(ingredients));
     }
+
+    function logList(){
+        console.log($state.snapshot(ingredients));
+    }
 </script>
 
 <div>
@@ -56,17 +58,26 @@
     <label for="Size in Fl. Oz.">Drink size? (In fl.oz.)</label>
     <br/>
 
+    <!--
     <input type="checkbox" bind:checked={iced}>
     <label for="iced">Iced?</label>
     <br/>
 
+
     <input type="checkbox" bind:checked={complete_drink}>
     <label for="include_milk">Is this a complete drink? (i.e., not just shots of espresso over ice?)</label>
     <br/>
+    -->
 
     <button aria-label="Add ingredient" onclick={addIngredient}>Add Ingredient</button>
-    {#each ingredients as ingredient}
-        <Ingredient {...ingredient} onRemoval={handleDeletion}/>
+    {#each ingredients as ingredient (ingredient.id)}
+        <Ingredient {...ingredient} 
+            onRemoval={handleDeletion} 
+            id={ingredient.id} 
+            bind:category={ingredient.category}
+            bind:name={ingredient.name}
+            bind:ounces={ingredient.ounces}
+        />
     {/each}
     
 </div>
@@ -91,6 +102,10 @@
             </tr>
         </tbody>
     </table>
+</div>
+
+<div>
+    <button onclick={logList}>console.log() the current ingredient list.</button>
 </div>
 
 <style lang="css">

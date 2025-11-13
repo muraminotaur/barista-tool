@@ -1,7 +1,7 @@
 <script lang="ts">
     import { drink_data } from '$lib/drink_data';
 
-    let { id = "", category = "", name = "", ounces = 0, onRemoval } = $props();
+    let { id = "", category = $bindable(""), name = $bindable(""), ounces = $bindable(0), onRemoval } = $props();
 
     const types = ['flavor', 'milk', 'base'];
 
@@ -31,11 +31,20 @@
     
     {#snippet flavor()}
         <select name="flavor-selection" bind:value={name}>
-            {#each drink_data.flavors as f_option}
-                <option value={f_option}>
-                    {f_option.name}
-                </option>
-            {/each}
+            <optgroup label="Sauces">
+                {#each drink_data.flavors.sauces as f_option}
+                    <option value={f_option}>
+                        {f_option.name}
+                    </option>
+                {/each}
+            </optgroup>
+            <optgroup label="Syrups">
+                {#each drink_data.flavors.syrups as f_option}
+                    <option value={f_option}>
+                        {f_option.name}
+                    </option>
+                {/each}
+            </optgroup>
         </select>
 
         <input type="number" step=0.25 bind:value={ounces}>
@@ -44,12 +53,38 @@
 
     {#snippet milk()}
         <select name="milk-selection" bind:value={name}>
-            {#each drink_data.milks as f_option}
-                <option value={f_option}>
-                    {f_option.name}
-                </option>
-            {/each}
+            <optgroup label="Dairy">
+                {#each drink_data.milks.dairy as f_option}
+                    <option value={f_option}>
+                        {f_option.name}
+                    </option>
+                {/each}
+            </optgroup>
+            <optgroup label="Non-dairy">
+                {#each drink_data.milks.nondairy as f_option}
+                    <option value={f_option}>
+                        {f_option.name}
+                    </option>
+                {/each}
+            </optgroup>
+            <optgroup label="Misc">
+                {#each drink_data.milks.misc as f_option}
+                    <option value={f_option}>
+                        {f_option.name}
+                    </option>
+                {/each}
+            </optgroup>
         </select>
+
+        <!--
+        deciding to keep the ounces input for milks/water because 
+        this will make adding splashes of milk to americanos and
+        iced/hot espressos much easier. less complexity in exchange for
+        slightly more user effort. (i'm really the only likely user so 
+        who cares (i don't!))
+        -->
+        <input type="number" step=1 bind:value={ounces}>
+        <label for="amount in ounces">oz</label>
     {/snippet}
 
     {#snippet base()}
