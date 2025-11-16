@@ -332,6 +332,14 @@ export const drink_data = {
                 "sugar": 0
             },
             {
+                "name": "Honey",
+                "calories": 120,
+                "fat": 0,
+                "sodium": 0,
+                "carbs": 34,
+                "sugar": 34
+            },
+            {
                 "name": "Irish Cream",
                 "calories": 90,
                 "fat": 0,
@@ -736,11 +744,11 @@ export const drink_data = {
         },
         {
             "name": "Freeze",
-            "calories": 5,
-            "fat": 0,
-            "sodium": 0,
-            "carbs": 0,
-            "sugar": 0
+            "calories": 113.75,
+            "fat": 1,
+            "sodium": 15,
+            "carbs": 25.375,
+            "sugar": 25.375
         },
         {
             "name": "Chai Concentrate (Oregon Chai)",
@@ -781,6 +789,14 @@ export const drink_data = {
             "sodium": 0,
             "carbs": 0,
             "sugar": 0
+        },
+        {
+            "name": "Frost Mix (PrairieFarms)",
+            "calories": 41.75,
+            "fat": 1.04,
+            "sodium": 27.83,
+            "carbs": 6.61,
+            "sugar": 5.57
         }
     ]
 }

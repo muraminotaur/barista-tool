@@ -23,12 +23,7 @@
         console.log("currently calculating: " + field + ": " + total);
         return total;
     }*/
-    let fat = 'unfinished';
-    let sodium = 'unfinished';
-    let carbs = 'unfinished';
-    let sugar = 'unfinished';
-
-    let calories = $state(0);
+    let nutrition = $state({"calories": 0, "fat": 0, "sodium": 0, "carbs": 0, "sugar": 0});
    
     function addIngredient() {
         ingredients.push({
@@ -37,6 +32,16 @@
             name: "",
             ounces: 0
         });
+    }
+
+    function calculate_nutrition(ingredients){
+        //wherever this function goes it'll need to import drink_data.ts
+        for (let i = 0; i < ingredients.length; i++){
+            
+        }
+
+        console.log(ingredients[0].name);
+        return {"calories": 0, "fat": 0, "sodium": 0, "carbs": 0, "sugar": 0};
     }
 
     function handleDeletion({ id }: {id: string}) {
@@ -71,7 +76,8 @@
 
     <button aria-label="Add ingredient" onclick={addIngredient}>Add Ingredient</button>
     {#each ingredients as ingredient (ingredient.id)}
-        <Ingredient {...ingredient} 
+        <Ingredient 
+            {...ingredient} 
             onRemoval={handleDeletion} 
             id={ingredient.id} 
             bind:category={ingredient.category}
@@ -94,11 +100,11 @@
         </thead>
         <tbody>
             <tr>
-                <td>{calories}cal</td>
-                <td>{fat}g</td>
-                <td>{sodium}mg</td>
-                <td>{carbs}g</td>
-                <td>{sugar}g</td>
+                <td>{nutrition.calories}cal</td>
+                <td>{nutrition.fat}g</td>
+                <td>{nutrition.sodium}mg</td>
+                <td>{nutrition.carbs}g</td>
+                <td>{nutrition.sugar}g</td>
             </tr>
         </tbody>
     </table>
