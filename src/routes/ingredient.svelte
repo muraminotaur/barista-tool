@@ -1,9 +1,26 @@
 <script lang="ts">
     import { drink_data } from '$lib/drink_data';
 
-    let { id = "", category = $bindable(""), name = $bindable(""), ounces = $bindable(0), onRemoval } = $props();
+    let { id = "", category = $bindable(""), subcategory = $bindable(""), name = $bindable(""), ounces = $bindable(0), onRemoval } = $props();
 
     const types = ['flavor', 'milk', 'base'];
+
+    function arrayRegroup(array: any[], key: string) {
+        //Reduce bigger array into smaller subset. Having acc[] and item[] as parameters "creates" them, neither exist. (saying this so i can understand arrow notation better.)
+        return array.reduce((acc, item) => {
+            //access each item in the array and find the field with Key
+            const group = item[key];
+            //if the group in array doesn't exist, set create a new array for that group.
+            if (!acc[group]) acc[group] = [];
+            //push the objects currently selected into the new array group
+            acc[group].push(item);
+            return acc;
+        }, {});
+    }
+
+    //shouldn't i only really do this once? is there a smart way i can move this to a global definition
+    const flavors = arrayRegroup(drink_data.flavors, "subcategory");
+    const milks = arrayRegroup(drink_data.milks, "subcategory");
 
     function removeIngredient(){
         //Call parent callback with the UUID of this component.
@@ -13,6 +30,7 @@
 
 <div class="ingredient-container">
     <div class="info">
+        <!-- remove when done with debugging -->
         <p>{category ? category:'...'}<br/>svelte UID: {id}</p>
     </div>
 
@@ -32,14 +50,14 @@
     {#snippet flavor()}
         <select name="flavor-selection" bind:value={name}>
             <optgroup label="Sauces">
-                {#each drink_data.flavors.sauces as f_option}
+                {#each flavors.Sauce as f_option}
                     <option value={f_option}>
                         {f_option.name}
                     </option>
                 {/each}
             </optgroup>
             <optgroup label="Syrups">
-                {#each drink_data.flavors.syrups as f_option}
+                {#each flavors.Syrup as f_option}
                     <option value={f_option}>
                         {f_option.name}
                     </option>
@@ -54,21 +72,21 @@
     {#snippet milk()}
         <select name="milk-selection" bind:value={name}>
             <optgroup label="Dairy">
-                {#each drink_data.milks.dairy as f_option}
+                {#each milks.Dairy as f_option}
                     <option value={f_option}>
                         {f_option.name}
                     </option>
                 {/each}
             </optgroup>
             <optgroup label="Non-dairy">
-                {#each drink_data.milks.nondairy as f_option}
+                {#each milks["Non-dairy"] as f_option}
                     <option value={f_option}>
                         {f_option.name}
                     </option>
                 {/each}
             </optgroup>
             <optgroup label="Misc">
-                {#each drink_data.milks.misc as f_option}
+                {#each milks.Misc as f_option}
                     <option value={f_option}>
                         {f_option.name}
                     </option>

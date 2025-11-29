@@ -29,6 +29,7 @@
         ingredients.push({
             id: uuid(),
             category: "",
+            subcategory: "",
             name: "",
             ounces: 0
         });
@@ -36,12 +37,15 @@
 
     function calculate_nutrition(ingredients){
         //wherever this function goes it'll need to import drink_data.ts
-        for (let i = 0; i < ingredients.length; i++){
-            
-        }
+        let calc_table = {"calories": 0, "fat": 0, "sodium": 0, "carbs": 0, "sugar": 0};
+        let calories, fat, sodium, carbs, sugar = 0;
 
-        console.log(ingredients[0].name);
-        return {"calories": 0, "fat": 0, "sodium": 0, "carbs": 0, "sugar": 0};
+        //TODO: this
+        ingredients.forEach(() => {
+
+        });
+
+        return calc_table;
     }
 
     function handleDeletion({ id }: {id: string}) {
