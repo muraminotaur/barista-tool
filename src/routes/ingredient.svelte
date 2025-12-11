@@ -1,12 +1,19 @@
 <script lang="ts">
     import { drink_data } from '$lib/drink_data';
 
-    let { id = "", category = $bindable(""), subcategory = $bindable(""), name = $bindable(""), ounces = $bindable(0), onRemoval } = $props();
+    let { 
+        id = "", 
+        category = $bindable(""), 
+        ounces = $bindable(0), 
+        ingredient = $bindable(),
+        onRemoval 
+    } = $props();
 
     const types = ['flavor', 'milk', 'base'];
 
     function arrayRegroup(array: any[], key: string) {
-        //Reduce bigger array into smaller subset. Having acc[] and item[] as parameters "creates" them, neither exist. (saying this so i can understand arrow notation better.)
+        //Reduce bigger array into smaller subset. Having acc[] and item[] as parameters "creates" them, 
+        //neither exist prior to this. (saying this so i can understand arrow notation better.)
         return array.reduce((acc, item) => {
             //access each item in the array and find the field with Key
             const group = item[key];
@@ -19,19 +26,25 @@
     }
 
     //shouldn't i only really do this once? is there a smart way i can move this to a global definition
-    const flavors = arrayRegroup(drink_data.flavors, "subcategory");
-    const milks = arrayRegroup(drink_data.milks, "subcategory");
+    const flavors = arrayRegroup(drink_data.flavor, "subcategory");
+    const milks = arrayRegroup(drink_data.milk, "subcategory");
 
     function removeIngredient(){
         //Call parent callback with the UUID of this component.
         onRemoval?.({ id });
+        //learned that this ^^ syntax is called a Chaining Operator
+        // and that it safely accesses a property / method and returns undefined if it doesn't exist.
+    }
+
+    //debugging
+    function printout() {
+        console.log(ingredient);
     }
 </script>
 
 <div class="ingredient-container">
     <div class="info">
-        <!-- remove when done with debugging -->
-        <p>{category ? category:'...'}<br/>svelte UID: {id}</p>
+        <p>{category ? category:'...'}</p>
     </div>
 
     <div class="ingredient">
@@ -48,7 +61,7 @@
     </div>
     
     {#snippet flavor()}
-        <select name="flavor-selection" bind:value={name}>
+        <select name="flavor-selection" bind:value={ingredient}>
             <optgroup label="Sauces">
                 {#each flavors.Sauce as f_option}
                     <option value={f_option}>
@@ -70,7 +83,7 @@
     {/snippet}
 
     {#snippet milk()}
-        <select name="milk-selection" bind:value={name}>
+        <select name="milk-selection" bind:value={ingredient}>
             <optgroup label="Dairy">
                 {#each milks.Dairy as f_option}
                     <option value={f_option}>
@@ -106,8 +119,8 @@
     {/snippet}
 
     {#snippet base()}
-        <select name="base-selection" bind:value={name}>
-            {#each drink_data.bases as f_option}
+        <select name="base-selection" bind:value={ingredient}>
+            {#each drink_data.base as f_option}
                 <option value={f_option}>
                     {f_option.name}
                 </option>
@@ -130,6 +143,10 @@
 
     <div class="delete-button">
         <button onclick={removeIngredient}>Remove ingredient</button>
+    </div>
+
+    <div class="printout">
+        <button onclick={printout}>print ingredient</button>
     </div>
 </div>
 

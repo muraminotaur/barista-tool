@@ -1,9 +1,32 @@
 <script lang="ts">
 	import Ingredient from "./ingredient.svelte";
     import { drink_data } from '$lib/drink_data';
-    import { ingredients } from './shared.svelte';
 
     import { uuid } from '$lib/utility';
+
+    let ingredients: [{ 
+    id: string; 
+    category: string; 
+    ingredient?: any; 
+    ounces: number 
+}] = $state([
+    {
+        id: "starter",
+        category: "flavor",
+        ingredient: {
+            "name": "Caramel",
+            "subcategory": "Sauce",
+            nutrition: {
+                "calories": 0,
+                "fat": 0,
+                "sodium": 0,
+                "carbs": 0,
+                "sugar": 0
+            }
+        },
+        ounces: 1
+    }
+])
 
     // i think the characteristics of the drink should be detailed in this file.
     // things like hot/iced/frozen, milk/no milk, etc.
@@ -12,41 +35,45 @@
     //i've changed this to a complete drink bool. i expand on this in my dev journal.
     //let complete_drink = $state(true);
 
-    //unsure if this works because my state management isn't good enough to get this to trigger correctly.
-    /*function calc_nutrition_field(array, field: string) {
-        let total = 0;
-        if(field === "calories") {
-            //can i programmatically calculate all of these?
-            //i need to sketch this out.
-        }
-        array.forEach((e) => total += e[field]);
-        console.log("currently calculating: " + field + ": " + total);
-        return total;
-    }*/
-    let nutrition = $state({"calories": 0, "fat": 0, "sodium": 0, "carbs": 0, "sugar": 0});
+    let calories = $derived.by(() => {
+        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.calories * currentValue.ounces), 0);
+    });
+    let fat = $derived.by(() => {
+        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.fat * currentValue.ounces), 0);
+    });
+    let sodium = $derived.by(() => {
+        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.sodium * currentValue.ounces), 0);
+    });
+    let carbs = $derived.by(() => {
+        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.carbs * currentValue.ounces), 0);
+    });
+    let sugar = $derived.by(() => {
+        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.sugar * currentValue.ounces), 0);
+    });
    
     function addIngredient() {
         ingredients.push({
             id: uuid(),
             category: "",
-            subcategory: "",
-            name: "",
+            ingredient: {
+                nutrition: {
+                "calories": 0,
+                "fat": 0,
+                "sodium": 0,
+                "carbs": 0,
+                "sugar": 0
+                }
+            },
             ounces: 0
         });
     }
 
-    function calculate_nutrition(ingredients){
-        //wherever this function goes it'll need to import drink_data.ts
-        let calc_table = {"calories": 0, "fat": 0, "sodium": 0, "carbs": 0, "sugar": 0};
-        let calories, fat, sodium, carbs, sugar = 0;
+    //TODO: none of this is right. refer to the message i sent to neil for further information and make a devlog entry for it.
+    //ingredient.svelte should now be able to pass the ingredient object i need as it's a property and a field in the ingredients[] array.
 
-        //TODO: this
-        ingredients.forEach(() => {
-
-        });
-
-        return calc_table;
-    }
+    // nutrition.calories = (ingredients.reduce((accumulator, currentValue) => {
+    //         accumulator + (currentValue.ingredient.nutrition.calories * currentValue.ounces);
+    // }, 0 /*initial value*/));
 
     function handleDeletion({ id }: {id: string}) {
         const index = ingredients.findIndex(t => t.id === id);
@@ -59,6 +86,7 @@
     function logList(){
         console.log($state.snapshot(ingredients));
     }
+
 </script>
 
 <div>
@@ -67,17 +95,6 @@
     <label for="Size in Fl. Oz.">Drink size? (In fl.oz.)</label>
     <br/>
 
-    <!--
-    <input type="checkbox" bind:checked={iced}>
-    <label for="iced">Iced?</label>
-    <br/>
-
-
-    <input type="checkbox" bind:checked={complete_drink}>
-    <label for="include_milk">Is this a complete drink? (i.e., not just shots of espresso over ice?)</label>
-    <br/>
-    -->
-
     <button aria-label="Add ingredient" onclick={addIngredient}>Add Ingredient</button>
     {#each ingredients as ingredient (ingredient.id)}
         <Ingredient 
@@ -85,8 +102,8 @@
             onRemoval={handleDeletion} 
             id={ingredient.id} 
             bind:category={ingredient.category}
-            bind:name={ingredient.name}
             bind:ounces={ingredient.ounces}
+            bind:ingredient={ingredient.ingredient}
         />
     {/each}
     
@@ -104,19 +121,19 @@
         </thead>
         <tbody>
             <tr>
-                <td>{nutrition.calories}cal</td>
-                <td>{nutrition.fat}g</td>
-                <td>{nutrition.sodium}mg</td>
-                <td>{nutrition.carbs}g</td>
-                <td>{nutrition.sugar}g</td>
+                <td>{calories}cal</td>
+                <td>{fat}g</td>
+                <td>{sodium}mg</td>
+                <td>{carbs}g</td>
+                <td>{sugar}g</td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<div>
+<!-- <div>
     <button onclick={logList}>console.log() the current ingredient list.</button>
-</div>
+</div> -->
 
 <style lang="css">
 div {
