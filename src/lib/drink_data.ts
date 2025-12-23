@@ -839,6 +839,17 @@ export const drink_data = {
             }
         },
         {
+            "name": "2% Milk (Borden's)",
+            "subcategory": "Dairy",
+            nutrition: {
+                "calories": 16.25,
+                "fat": 0.625,
+                "sodium": 16.25,
+                "carbs": 1.5,
+                "sugar": 1.5
+            }
+        },
+        {
             "name": "Whole Milk (PrairieFarms)",
             "subcategory": "Dairy",
             nutrition: {
@@ -846,6 +857,17 @@ export const drink_data = {
                 "fat": 1,
                 "sodium": 15,
                 "carbs": 1.375,
+                "sugar": 1.375
+            }
+        },
+        {
+            "name": "Whole Milk (Borden's)",
+            "subcategory": "Dairy",
+            nutrition: {
+                "calories": 20,
+                "fat": 1,
+                "sodium": 16.25,
+                "carbs": 1.5,
                 "sugar": 1.375
             }
         },
@@ -861,6 +883,17 @@ export const drink_data = {
             }
         },
         {
+            "name": "Chocolate Milk (Borden's)",
+            "subcategory": "Dairy",
+            nutrition: {
+                "calories": 28.75,
+                "fat": 1.125,
+                "sodium": 31.25,
+                "carbs": 3.75,
+                "sugar": 3.375
+            }
+        },
+        {
             "name": "Nonfat Milk (PrairieFarms)",
             "subcategory": "Dairy",
             nutrition: {
@@ -869,6 +902,17 @@ export const drink_data = {
                 "sodium": 15,
                 "carbs": 1.375,
                 "sugar": 1.375
+            }
+        },
+        {
+            "name": "Nonfat Milk (Borden's)",
+            "subcategory": "Dairy",
+            nutrition: {
+                "calories": 11.25,
+                "fat": 0,
+                "sodium": 16.25,
+                "carbs": 1.5,
+                "sugar": 1.5
             }
         },
         {
@@ -883,14 +927,47 @@ export const drink_data = {
             }
         },
         {
+            "name": "Half & Half (Borden's)",
+            "subcategory": "Dairy",
+            nutrition: {
+                "calories": 40,
+                "fat": 3.5,
+                "sodium": 25,
+                "carbs": 1,
+                "sugar": 1
+            }
+        },
+        {
             "name": "Heavy Whipping Cream (PrairieFarms)",
             "subcategory": "Dairy",
             nutrition: {
-                "calories": 45,
-                "fat": 5,
+                "calories": 90,
+                "fat": 10,
                 "sodium": 0,
                 "carbs": 0,
                 "sugar": 0
+            }
+        },
+        {
+            "name": "Heavy Whipping Cream (Borden's)",
+            "subcategory": "Dairy",
+            nutrition: {
+                "calories": 90,
+                "fat": 9,
+                "sodium": 10,
+                "carbs": 2,
+                "sugar": 2
+            }
+        },
+        {
+            "name": "Eggnog (Borden's)",
+            "subcategory": "Dairy",
+            nutrition: {
+                "calories": 62.5,
+                "fat": 3.75,
+                "sodium": 25,
+                "carbs": 6,
+                "sugar": 6
             }
         },
         {

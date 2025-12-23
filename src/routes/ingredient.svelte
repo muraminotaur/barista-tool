@@ -5,6 +5,7 @@
         id = "", 
         category = $bindable(""), 
         ounces = $bindable(0), 
+        autofill = $bindable(false),
         ingredient = $bindable(),
         onRemoval 
     } = $props();
@@ -26,6 +27,7 @@
     }
 
     //shouldn't i only really do this once? is there a smart way i can move this to a global definition
+    //as of rn this is being run every single time a new ingredient component is created. even if it isn't used.
     const flavors = arrayRegroup(drink_data.flavor, "subcategory");
     const milks = arrayRegroup(drink_data.milk, "subcategory");
 
@@ -34,6 +36,12 @@
         onRemoval?.({ id });
         //learned that this ^^ syntax is called a Chaining Operator
         // and that it safely accesses a property / method and returns undefined if it doesn't exist.
+    }
+
+    function setAutofill(){
+        //toggle
+        autofill = !autofill;
+        //this function will do more when fully implemented
     }
 
     //debugging
@@ -47,6 +55,7 @@
         <p>{category ? category:'...'}</p>
     </div>
 
+    <br/>
     <div class="ingredient">
         <select 
             name="type-selection" 
@@ -114,8 +123,10 @@
         slightly more user effort. (i'm really the only likely user so 
         who cares (i don't!))
         -->
-        <input type="number" step=1 bind:value={ounces}>
-        <label for="amount in ounces">oz</label>
+        {#if !autofill}
+            <input type="number" step=1 bind:value={ounces}>
+            <label for="amount in ounces">oz</label>
+        {/if}
     {/snippet}
 
     {#snippet base()}
@@ -127,13 +138,21 @@
             {/each}
         </select>
         
+
         <input type="number" step=0.25 bind:value={ounces}>
         <label for="amount in ounces">oz</label>
+    {/snippet}
+
+    {#snippet autofilloption()}
+        <div class="autofill-option">
+            <label for="x">Set this to autofill? <input type="button" bind:value={autofill} onclick={setAutofill}></label>
+        </div>
     {/snippet}
 
     {#if category === 'flavor'}
         {@render flavor()}
     {:else if category === 'milk'}
+        {@render autofilloption()}
         {@render milk()}
     {:else if category === 'base'}
         {@render base()}
@@ -145,9 +164,9 @@
         <button onclick={removeIngredient}>Remove ingredient</button>
     </div>
 
-    <div class="printout">
+    <!-- <div class="printout">
         <button onclick={printout}>print ingredient</button>
-    </div>
+    </div> -->
 </div>
 
 <style>
@@ -156,8 +175,10 @@
     }
 
     .ingredient-container {
-        border: 1px solid #000;
-        margin: 0.25em;
-        padding: 0.25em;
+        background: var(--primary-2);
+        padding: 1ch;
+    }
+    button{
+        max-width: fit-content;
     }
 </style>
