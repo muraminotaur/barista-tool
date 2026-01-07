@@ -181,4 +181,10 @@
     button{
         max-width: fit-content;
     }
+
+    @media only screen and (max-width: 640px) {
+        select {
+            max-width: 250px;
+        }
+    }
 </style>

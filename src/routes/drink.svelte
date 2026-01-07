@@ -4,31 +4,33 @@
     // import { presets } from "./shared.svelte";
     import { uuid } from '$lib/utility';
 
+    const DECI_PRECISION = 2;
+
     let ingredients: [{ 
-    id: string; 
-    category: string; 
-    ingredient?: any; 
-    ounces: number;
-    autofill: boolean 
-}] = $state([
-    {
-        id: "starter",
-        category: "flavor",
-        ingredient: {
-            "name": "Caramel",
-            "subcategory": "Sauce",
-            nutrition: {
-                "calories": 0,
-                "fat": 0,
-                "sodium": 0,
-                "carbs": 0,
-                "sugar": 0
-            }
-        },
-        ounces: 1,
-        autofill: false
-    }
-])
+        id: string; 
+        category: string; 
+        ingredient?: any; 
+        ounces: number;
+        autofill: boolean 
+    }] = $state([
+        {
+            id: "starter",
+            category: "flavor",
+            ingredient: {
+                "name": "Caramel",
+                "subcategory": "Sauce",
+                nutrition: {
+                    "calories": 0,
+                    "fat": 0,
+                    "sodium": 0,
+                    "carbs": 0,
+                    "sugar": 0
+                }
+            },
+            ounces: 1,
+            autofill: false
+        }
+    ]);
 
     let size = $state(16); //size should stay a variable user-set number to account for iced/hot espresso, i.e. not complete drinks.
 
@@ -39,19 +41,19 @@
     })
 
     let calories = $derived.by(() => {
-        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.calories * currentValue.ounces), 0);
+        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.calories * currentValue.ounces), 0).toFixed(DECI_PRECISION);
     });
     let fat = $derived.by(() => {
-        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.fat * currentValue.ounces), 0);
+        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.fat * currentValue.ounces), 0).toFixed(DECI_PRECISION);
     });
     let sodium = $derived.by(() => {
-        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.sodium * currentValue.ounces), 0);
+        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.sodium * currentValue.ounces), 0).toFixed(DECI_PRECISION);
     });
     let carbs = $derived.by(() => {
-        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.carbs * currentValue.ounces), 0);
+        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.carbs * currentValue.ounces), 0).toFixed(DECI_PRECISION);
     });
     let sugar = $derived.by(() => {
-        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.sugar * currentValue.ounces), 0);
+        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.sugar * currentValue.ounces), 0).toFixed(DECI_PRECISION);
     });
    
     function addIngredient() {
@@ -110,18 +112,23 @@
 
     <p>Total ounces: {total}oz</p>
     
-    <button aria-label="Add ingredient" onclick={addIngredient}>Add Ingredient</button>
-    {#each ingredients as ingredient (ingredient.id)}
-        <Ingredient 
-            {...ingredient} 
-            onRemoval={handleDeletion} 
-            id={ingredient.id} 
-            bind:category={ingredient.category}
-            bind:ounces={ingredient.ounces}
-            bind:autofill={ingredient.autofill}
-            bind:ingredient={ingredient.ingredient}
-        />
-    {/each}
+    <div class="ingr-container">
+        {#each ingredients as ingredient (ingredient.id)}
+            <Ingredient 
+                {...ingredient} 
+                onRemoval={handleDeletion} 
+                id={ingredient.id} 
+                bind:category={ingredient.category}
+                bind:ounces={ingredient.ounces}
+                bind:autofill={ingredient.autofill}
+                bind:ingredient={ingredient.ingredient}
+            />
+        {/each}
+    </div>
+
+    <div class="add-ingr">
+        <button aria-label="Add ingredient" onclick={addIngredient}>Add Ingredient</button>
+    </div>
 </div>
 <div class="nutrition">
     <table>
@@ -156,15 +163,22 @@
 
 <style lang="css">
 div {
-    max-width: fit-content;
+    /* max-width: fit-content; */
     background-color: var(--primary-2);
 }
 
 .drink-comp, .nutrition {
-    margin: 1ch;
+    margin: 1ch auto;
     padding: 2ch;
     border: 0.5ch solid var(--primary-3);
     border-radius: 2ch;
+}
+
+.drink-comp {
+    width: 60%;
+}
+.nutrition {
+    width: fit-content;
 }
 
 td {
@@ -175,5 +189,12 @@ hr {
     color: var(--primary-2);
     border: 0.5ch solid var(--primary-3);
     border-radius: 2ch;
+}
+
+@media only screen and (max-width: 640px) {
+    .drink-comp {
+        margin: 1ch;
+        width: auto;
+    }
 }
 </style>
