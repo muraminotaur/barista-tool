@@ -35,6 +35,8 @@
 	</ul>
 	<h5>Things that don't work</h5>
 	<ul>
+		<li>Autofill blocks</li>
+		<li>Apple Juice data</li>
 		<li>Blended energy drinks</li>
 		<div class="subnote">
 			Still need to calculate base unit value. This has been difficult since the energy 
