@@ -9,6 +9,7 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<title>BaristaToolkit</title>
 </svelte:head>
 
 {@render children?.()}

@@ -1059,6 +1059,17 @@ export const drink_data = {
             }
         },
         {
+            "name": "Pistachio Milk (Pacific Foods)",
+            "subcategory": "Non-dairy",
+            nutrition: {
+                "calories": 8.75,
+                "fat": 0.375,
+                "sodium": 20,
+                "carbs": 1.125,
+                "sugar": 1
+            }
+        },
+        {
             "name": "Water",
             "subcategory": "Misc",
             nutrition: {
@@ -1112,9 +1123,9 @@ export const drink_data = {
             }
         },
         {
-            "name": "Cold Brew Concentrate",
+            "name": "Cold Brew Concentrate (MISSING)",
             nutrition: {
-                "calories": 0,
+                "calories": 8,
                 "fat": 0,
                 "sodium": 0,
                 "carbs": 0,
@@ -1124,11 +1135,11 @@ export const drink_data = {
         {
             "name": "Blumania Energy Drink",
             nutrition: {
-                "calories": 0,
+                "calories": 13.1,
                 "fat": 0,
-                "sodium": 0,
-                "carbs": 0,
-                "sugar": 0
+                "sodium": 17.85,
+                "carbs": 3.34,
+                "sugar": 3.21
             }
         },
         {
@@ -1142,6 +1153,36 @@ export const drink_data = {
             }
         },
         {
+            "name": "Caffeine Extract - Turbo White Lotus (Lotus Lifestyle)",
+            nutrition: {
+                "calories": 80,
+                "fat": 0,
+                "sodium": 80,
+                "carbs": 20,
+                "sugar": 19.5
+            }
+        },
+        {
+            "name": "Caffeine Extract - Power Up (Lotus Lifestyle)",
+            nutrition: {
+                "calories": 0,
+                "fat": 0,
+                "sodium": 115,
+                "carbs": 1,
+                "sugar": 1
+            }
+        },
+        {
+            "name": "Club Soda (Kirkland Signature)",
+            nutrition: {
+                "calories": 0,
+                "fat": 0,
+                "sodium": 0.59,
+                "carbs": 0,
+                "sugar": 0
+            }
+        },
+        {
             "name": "Frost Mix (PrairieFarms)",
             nutrition: {
                 "calories": 41.75,
@@ -1149,6 +1190,16 @@ export const drink_data = {
                 "sodium": 27.83,
                 "carbs": 6.61,
                 "sugar": 5.57
+            }
+        },
+        {
+            "name": "Frost Mix (Borden's)",
+            nutrition: {
+                "calories": 48.75,
+                "fat": 1.31,
+                "sodium": 31.87,
+                "carbs": 8.06,
+                "sugar": 7.87
             }
         }
     ]
