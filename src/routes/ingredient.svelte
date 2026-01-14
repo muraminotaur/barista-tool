@@ -12,6 +12,8 @@
 
     const types = ['flavor', 'milk', 'base'];
 
+    let targetAutofillOunces = $state(0);
+
     function arrayRegroup(array: any[], key: string) {
         //Reduce bigger array into smaller subset. Having acc[] and item[] as parameters "creates" them, 
         //neither exist prior to this. (saying this so i can understand arrow notation better.)
@@ -126,6 +128,10 @@
         {#if !autofill}
             <input type="number" step=1 bind:value={ounces}>
             <label for="amount in ounces">oz</label>
+        {/if}
+        {#if autofill}
+            <input type="number" step=1 bind:value={targetAutofillOunces}>
+            <label for="Target ounces">Target size in ounces</label>
         {/if}
     {/snippet}
 

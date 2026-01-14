@@ -34,11 +34,16 @@
 
     let size = $state(16); //size should stay a variable user-set number to account for iced/hot espresso, i.e. not complete drinks.
 
+    let freeOunces = $derived.by(() => {
+        if (ingredients.length <= 0) return 0;
+        return ingredients.reduce((accumulator, currentValue) => accumulator + currentValue.ounces, 0);
+    });
+
     //iterate ingredients array, add up all ounces
     let total = $derived.by(() => {
         if (ingredients.length <= 0) return 0;
         return ingredients.reduce((accumulator, currentValue) => accumulator + currentValue.ounces, 0);
-    })
+    });
 
     let calories = $derived.by(() => {
         return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.calories * currentValue.ounces), 0).toFixed(DECI_PRECISION);
