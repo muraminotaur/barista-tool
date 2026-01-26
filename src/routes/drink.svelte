@@ -34,9 +34,12 @@
 
     let size = $state(16); //size should stay a variable user-set number to account for iced/hot espresso, i.e. not complete drinks.
 
+    //TODO: subtract current total ounces from target ounces.
     let freeOunces = $derived.by(() => {
         if (ingredients.length <= 0) return 0;
         return ingredients.reduce((accumulator, currentValue) => accumulator + currentValue.ounces, 0);
+        //this currently doesnt do what it's supposed to.
+        //i still need to actually implement a system to set what the target ounces are so that this can function.
     });
 
     //iterate ingredients array, add up all ounces

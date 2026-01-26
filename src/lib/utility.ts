@@ -1,4 +1,25 @@
+// =======================================================================================
+import { drink_data } from "./drink_data";
 
+function arrayRegroup(array: any[], key: string) {
+    //Reduce bigger array into smaller subset. Having acc[] and item[] as parameters "creates" them, 
+    //neither exist prior to this. (saying this so i can understand arrow notation better.)
+    return array.reduce((acc, item) => {
+        //access each item in the array and find the field with Key
+        const group = item[key];
+        //if the group in array doesn't exist, set create a new array for that group.
+        if (!acc[group]) acc[group] = [];
+        //push the objects currently selected into the new array group
+        acc[group].push(item);
+        return acc;
+    }, {});
+}
+
+//Used for menus in ingredient.svelte components.
+export const flavors = arrayRegroup(drink_data.flavor, "subcategory");
+export const milks = arrayRegroup(drink_data.milk, "subcategory");
+
+// =======================================================================================
 // In this script I'm setting up the UUID system for referencing ingredients in the array.
 // this implementation is taken from the cobalt.tools repository, since i'm unfamiliar with the best ways to do things
 // and their implementation seems to be safe and error-handling.
