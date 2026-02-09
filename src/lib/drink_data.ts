@@ -1183,6 +1183,16 @@ export const drink_data = {
             }
         },
         {
+            "name": "Chiller",
+            nutrition: {
+                "calories": 19.605,
+                "fat": 0.3125,
+                "sodium": 8.125,
+                "carbs": 4.406,
+                "sugar": 4.178
+            }
+        },
+        {
             "name": "Frost Mix (PrairieFarms)",
             nutrition: {
                 "calories": 41.75,
@@ -1201,6 +1211,26 @@ export const drink_data = {
                 "carbs": 8.06,
                 "sugar": 7.87
             }
-        }
+        },
+        {
+            "name": "Lemonade",
+            nutrition: {
+                "calories": 29.21,
+                "fat": 0,
+                "sodium": 0,
+                "carbs": 7.5625,
+                "sugar": 7.22
+            }
+        },
+        {
+            "name": "Apple Juice",
+            nutrition: {
+                "calories": 15,
+                "fat": 0,
+                "sodium": 3.75,
+                "carbs": 3.625,
+                "sugar": 3.5
+            }
+        },
     ]
 }

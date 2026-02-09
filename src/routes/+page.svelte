@@ -13,44 +13,31 @@
 	<h3>Mino's Notes</h3>
 	<div class="version">
 		<a href="https://github.com/muraminotaur/barista-tool" target="_blank" rel="noreferrer">
-			<code>version-1.1 (valais-blacknose)</code>
+			<code>version-1.2 (highland-cattle)</code>
 		</a>
 	</div>
 
 	<h5>Additions</h5>
 	<p>
-		This version update adds more nutritional data and updates visual design. 
+		This version update adds more nutritional data, optimizes function calls, and reorganizes code for ease of reading.
 	</p>
 	<ul>
-		<li>Added pistachio milk</li>
-		<li>Added caffeine extracts (Turbo & Power Up)</li>
-		<li>Added club sodas</li>
-		<li>Added nutritional data for Blumania energy drinks</li>
-		<li>Added notes section</li>
+		<li>Added lemonade, chiller, and apple juice data.</li>
 	</ul>
 	<h5>Changes</h5>
 	<ul>
-		<li>Changed font from DM Mono to IBM Plex Mono</li>
-		<li>Mobile responsive-ness and QOL changes for mobile.</li>
+		<li>Moved array manipulation and regrouping function to <code>utility.ts</code> to optimize performance.</li>
+		<li>Set cold brew data to be similar to espresso data.</li>
 	</ul>
 	<h5>Things that don't work</h5>
 	<ul>
-		<li>Autofill blocks</li>
-		<li>Apple Juice data</li>
+		<li>Autofill blocks/guided mode</li>
+		<li>Presets</li>
 		<li>Blended energy drinks</li>
 		<div class="subnote">
 			Still need to calculate base unit value. This has been difficult since the energy 
 			concentrate nutritional information isn't listed anywhere and I'm unable to find
 			resources that would point me to this. For now, assume it's very high in sugar and sodium.
-		</div>
-		<li>Cold Brew data</li>
-		<div class="subnote">
-			This can't be calculated due to lack of known data. However, the nutritional 
-			information is likely not very significant and comparable to espresso.
-		</div>
-		<li>Lemonade and Chiller mix</li>
-		<div class="subnote">
-			Chiller mix can be calculated once I calculate a base unit for lemonade. The numbers for the lemonades will unfortunately be a little imprecise. 
 		</div>
 	</ul>
 </div>

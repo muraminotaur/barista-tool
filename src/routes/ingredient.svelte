@@ -1,5 +1,6 @@
 <script lang="ts">
     import { drink_data } from '$lib/drink_data';
+    import { flavors, milks } from '$lib/utility';
 
     let { 
         id = "", 
@@ -12,24 +13,7 @@
 
     const types = ['flavor', 'milk', 'base'];
 
-    function arrayRegroup(array: any[], key: string) {
-        //Reduce bigger array into smaller subset. Having acc[] and item[] as parameters "creates" them, 
-        //neither exist prior to this. (saying this so i can understand arrow notation better.)
-        return array.reduce((acc, item) => {
-            //access each item in the array and find the field with Key
-            const group = item[key];
-            //if the group in array doesn't exist, set create a new array for that group.
-            if (!acc[group]) acc[group] = [];
-            //push the objects currently selected into the new array group
-            acc[group].push(item);
-            return acc;
-        }, {});
-    }
-
-    //shouldn't i only really do this once? is there a smart way i can move this to a global definition
-    //as of rn this is being run every single time a new ingredient component is created. even if it isn't used.
-    const flavors = arrayRegroup(drink_data.flavor, "subcategory");
-    const milks = arrayRegroup(drink_data.milk, "subcategory");
+    let targetAutofillOunces = $state(0);
 
     function removeIngredient(){
         //Call parent callback with the UUID of this component.
@@ -127,6 +111,10 @@
             <input type="number" step=1 bind:value={ounces}>
             <label for="amount in ounces">oz</label>
         {/if}
+        {#if autofill}
+            <input type="number" step=1 bind:value={targetAutofillOunces}>
+            <label for="Target ounces">Target size in ounces</label>
+        {/if}
     {/snippet}
 
     {#snippet base()}
@@ -152,7 +140,8 @@
     {#if category === 'flavor'}
         {@render flavor()}
     {:else if category === 'milk'}
-        {@render autofilloption()}
+        <!-- {@render autofilloption()} -->
+        <!-- temporarily commenting this out until it's complete to avoid confusion. -->
         {@render milk()}
     {:else if category === 'base'}
         {@render base()}
