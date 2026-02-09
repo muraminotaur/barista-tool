@@ -31,7 +31,7 @@
 	</ul>
 	<h5>Things that don't work</h5>
 	<ul>
-		<li>Autofill blocks</li>
+		<li>Autofill blocks/guided mode</li>
 		<li>Presets</li>
 		<li>Blended energy drinks</li>
 		<div class="subnote">
