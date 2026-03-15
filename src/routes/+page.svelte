@@ -17,6 +17,11 @@
 		</a>
 	</div>
 
+	<h5>IMPORTANT:</h5>
+	<p>
+		The calculations for Freeze mix are inaccurate. Please disregard any nutritional information for that slot.
+	</p>
+
 	<h5>Additions</h5>
 	<p>
 		This version update adds more nutritional data, optimizes function calls, and reorganizes code for ease of reading.

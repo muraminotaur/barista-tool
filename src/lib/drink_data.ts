@@ -1093,7 +1093,7 @@ export const drink_data = {
             }
         },
         {
-            "name": "Freeze",
+            "name": "Freeze (INACCURATE, DO NOT USE)",
             nutrition: {
                 "calories": 113.75,
                 "fat": 1,
