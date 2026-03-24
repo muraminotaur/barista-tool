@@ -13,13 +13,13 @@
 	<h3>Mino's Notes</h3>
 	<div class="version">
 		<a href="https://github.com/muraminotaur/barista-tool" target="_blank" rel="noreferrer">
-			<code>version-1.2 (highland-cattle)</code>
+			<code>version-1.2.1 (highland-cattle)</code>
 		</a>
 	</div>
 
-	<h5>IMPORTANT:</h5>
+	<h5>1.2.1 HOTFIX UPDATE:</h5>
 	<p>
-		The calculations for Freeze mix are inaccurate. Please disregard any nutritional information for that slot.
+		Freeze mix has been recalculated and is now accurate.
 	</p>
 
 	<h5>Additions</h5>

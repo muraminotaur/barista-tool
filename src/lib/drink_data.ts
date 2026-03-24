@@ -1093,13 +1093,13 @@ export const drink_data = {
             }
         },
         {
-            "name": "Freeze (INACCURATE, DO NOT USE)",
+            "name": "Freeze",
             nutrition: {
-                "calories": 113.75,
-                "fat": 1,
-                "sodium": 15,
-                "carbs": 25.375,
-                "sugar": 25.375
+                "calories": 16.02,
+                "fat": 0.755,
+                "sodium": 12.28,
+                "carbs": 2.708,
+                "sugar": 2.614
             }
         },
         {
