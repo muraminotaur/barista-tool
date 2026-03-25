@@ -107,14 +107,8 @@
         slightly more user effort. (i'm really the only likely user so 
         who cares (i don't!))
         -->
-        {#if !autofill}
-            <input type="number" step=1 bind:value={ounces}>
-            <label for="amount in ounces">oz</label>
-        {/if}
-        {#if autofill}
-            <input type="number" step=1 bind:value={targetAutofillOunces}>
-            <label for="Target ounces">Target size in ounces</label>
-        {/if}
+        <input type="number" step=1 bind:value={ounces}>
+        <label for="amount in ounces">oz</label>
     {/snippet}
 
     {#snippet base()}
@@ -131,17 +125,9 @@
         <label for="amount in ounces">oz</label>
     {/snippet}
 
-    {#snippet autofilloption()}
-        <div class="autofill-option">
-            <label for="x">Set this to autofill? <input type="button" bind:value={autofill} onclick={setAutofill}></label>
-        </div>
-    {/snippet}
-
     {#if category === 'flavor'}
         {@render flavor()}
     {:else if category === 'milk'}
-        <!-- {@render autofilloption()} -->
-        <!-- temporarily commenting this out until it's complete to avoid confusion. -->
         {@render milk()}
     {:else if category === 'base'}
         {@render base()}

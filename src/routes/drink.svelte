@@ -105,7 +105,7 @@
 </script>
 
 <div class="drink-comp">
-    <h2> - drink component - </h2>
+    <h2>Beverage Creation</h2>
     <hr>
 
     <!-- <select name="preset" bind:value={currentPreset} onchange={onPresetChange}>

@@ -13,21 +13,21 @@
 	<h3>Mino's Notes</h3>
 	<div class="version">
 		<a href="https://github.com/muraminotaur/barista-tool" target="_blank" rel="noreferrer">
-			<code>version-1.2.1 (highland-cattle)</code>
+			<code>version-1.3 (hereford)</code>
 		</a>
 	</div>
 
-	<h5>1.2.1 HOTFIX UPDATE:</h5>
+	<h5>Note about 1.2.1 Hotfix Update:</h5>
 	<p>
 		Freeze mix has been recalculated and is now accurate.
 	</p>
 
 	<h5>Additions</h5>
 	<p>
-		This version update adds more nutritional data, optimizes function calls, and reorganizes code for ease of reading.
+		
 	</p>
 	<ul>
-		<li>Added lemonade, chiller, and apple juice data.</li>
+		<li>?</li>
 	</ul>
 	<h5>Changes</h5>
 	<ul>
