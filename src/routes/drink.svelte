@@ -40,6 +40,8 @@
         return ingredients.reduce((accumulator, currentValue) => accumulator + currentValue.ounces, 0);
         //this currently doesnt do what it's supposed to.
         //i still need to actually implement a system to set what the target ounces are so that this can function.
+        
+        //2026.03.28 --> well wouldn't that be the size variable? i would need to use that first.
     });
 
     //iterate ingredients array, add up all ounces
@@ -90,13 +92,14 @@
         // console.log($state.snapshot(ingredients));
     }
 
-    // const onPresetChange = () => {
-    //     ingredients = currentPreset;
-    //     console.log($state.snapshot(ingredients));
-    //     console.log($state.snapshot(currentPreset));
-    // }
+    //TODO: this.
+    const onPresetChange = () => {
+        ingredients = currentPreset;
+        console.log($state.snapshot(ingredients));
+        console.log($state.snapshot(currentPreset));
+    }
 
-    // let currentPreset = $state();
+    let currentPreset = $state([]);
 
     function logList(){
         console.log($state.snapshot(ingredients));
@@ -178,8 +181,8 @@ div {
 .drink-comp, .nutrition {
     margin: 1ch auto;
     padding: 2ch;
-    border: 0.5ch solid var(--primary-3);
-    border-radius: 2ch;
+    border: var(--border-width) solid var(--secondary-1);
+    border-radius: var(--border-radius);
 }
 
 .drink-comp {
@@ -195,8 +198,8 @@ td {
 
 hr {
     color: var(--primary-2);
-    border: 0.5ch solid var(--primary-3);
-    border-radius: 2ch;
+    border: var(--border-width) solid var(--secondary-1);
+    border-radius: var(--border-radius);
 }
 
 @media only screen and (max-width: 640px) {

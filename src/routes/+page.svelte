@@ -24,7 +24,7 @@
 
 	<h5>Additions</h5>
 	<p>
-		
+		?
 	</p>
 	<ul>
 		<li>?</li>
@@ -53,18 +53,30 @@
 	:global{
 		:root {
 			/* using the flexoki palette for themeing */
-			--primary-1: #F2F0E5;
-			--primary-2: #E6E4D9;
-			--primary-3: #DAD8CE;
+			--primary-1: #F7EDDE;
+			--primary-2: #F9F5F1;
 			--accent: #878580;
 			--accent-highlight: rgba(135, 133, 128, 0.1);
-			--text-1: #282726;
-			--text-2: #1C1B1A;
+			--text-1: #0E0707;
+			--text-2: #261312;
+			--secondary-1: #EBD3AD;
+			--secondary-2: #CFA88C;
 	
 			font-family: "IBM Plex Mono", Courier, monospace;
 			font-kerning: -0.05ch;
 			color: var(--text-2);
 			background: var(--primary-1);
+
+			--border-width: 0.25ch;
+			--border-radius: 2ch;
+		}
+		::selection {
+			color: var(--text-1);
+			background: var(--secondary-2);
+		}
+		::-moz-selection {
+			color: var(--text-1);
+			background: var(--secondary-2);
 		}
 	}
 
@@ -83,7 +95,7 @@
 		margin: 1em auto;
 		width: 40%;
 		border: solid 1px var(--accent);
-		border-radius: 2ch;
+		border-radius: var(--border-radius);
 		padding: 1em;
 	}
 	.notes h3 {
@@ -94,7 +106,7 @@
 	.notes code {
 		background-color: var(--accent-highlight);
 		border: 1px solid var(--accent);
-		border-radius: 2ch;
+		border-radius: var(--border-radius);
 		padding: 0.75ch;
 	}
 	.notes a {

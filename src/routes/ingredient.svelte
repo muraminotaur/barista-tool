@@ -150,10 +150,13 @@
     }
 
     .ingredient-container {
-        background: var(--primary-2);
+        background: var(--primary-1);
         padding: 1ch;
+        margin: 0 1ch 1ch 0;
+        border-radius: var(--border-radius);
     }
-    button{
+
+    button {
         max-width: fit-content;
     }
 
