@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Ingredient from "./ingredient.svelte";
 
-    // import { presets } from "./shared.svelte";
+    import { presets } from "./shared.svelte";
     import { uuid } from '$lib/utility';
 
     const DECI_PRECISION = 2;
@@ -9,7 +9,15 @@
     let ingredients: [{ 
         id: string; 
         category: string; 
-        ingredient?: any; 
+        ingredient: {
+                nutrition: {
+                "calories": 0,
+                "fat": 0,
+                "sodium": 0,
+                "carbs": 0,
+                "sugar": 0
+                }
+            }; 
         ounces: number;
         autofill: boolean 
     }] = $state([
@@ -31,18 +39,6 @@
             autofill: false
         }
     ]);
-
-    let size = $state(16); //size should stay a variable user-set number to account for iced/hot espresso, i.e. not complete drinks.
-
-    //TODO: subtract current total ounces from target ounces.
-    let freeOunces = $derived.by(() => {
-        if (ingredients.length <= 0) return 0;
-        return ingredients.reduce((accumulator, currentValue) => accumulator + currentValue.ounces, 0);
-        //this currently doesnt do what it's supposed to.
-        //i still need to actually implement a system to set what the target ounces are so that this can function.
-        
-        //2026.03.28 --> well wouldn't that be the size variable? i would need to use that first.
-    });
 
     //iterate ingredients array, add up all ounces
     let total = $derived.by(() => {
@@ -93,13 +89,45 @@
     }
 
     //TODO: this.
-    const onPresetChange = () => {
-        ingredients = currentPreset;
-        console.log($state.snapshot(ingredients));
-        console.log($state.snapshot(currentPreset));
+    function onPresetChange() {
+        ingredients = [...currentPreset.preset];
+        console.log("ingredients[] -> ", $state.snapshot(ingredients));
+        console.log("currentPreset -> ", $state.snapshot(currentPreset));
     }
 
-    let currentPreset = $state([]);
+    let currentPreset: {
+        name: string;
+        preset: [{ 
+            id: string; 
+            category: string; 
+            ingredient: {
+                    nutrition: {
+                    "calories": 0,
+                    "fat": 0,
+                    "sodium": 0,
+                    "carbs": 0,
+                    "sugar": 0
+                    }
+                }; 
+            ounces: number;
+            autofill: boolean 
+    }]} = $state({
+        name: "fallback preset -- SOMETHING BROKE!",
+        preset: [{ 
+            id: "xx",
+            category: "flavor", 
+            ingredient: {
+                    nutrition: {
+                    "calories": 0,
+                    "fat": 0,
+                    "sodium": 0,
+                    "carbs": 0,
+                    "sugar": 0
+                    }
+                }, 
+            ounces: 0,
+            autofill: false 
+    }]});
 
     function logList(){
         console.log($state.snapshot(ingredients));
@@ -111,11 +139,11 @@
     <h2>Beverage Creation</h2>
     <hr>
 
-    <!-- <select name="preset" bind:value={currentPreset} onchange={onPresetChange}>
+    <select name="preset" bind:value={currentPreset} onchange={onPresetChange}>
         {#each presets as preset}
             <option value={preset}>{preset.name}</option>
         {/each}
-    </select> -->
+    </select>
 
     <!-- <input type="number" bind:value={size}>
     <label for="Size in Fl. Oz.">Drink size? (In fl.oz.) DOES NOTHING RIGHT NOW</label>
@@ -187,6 +215,7 @@ div {
 
 .drink-comp {
     width: 60%;
+    min-height: 300px;
 }
 .nutrition {
     width: fit-content;
