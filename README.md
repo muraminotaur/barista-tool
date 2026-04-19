@@ -37,7 +37,7 @@ The site is hosted [here](https://muraminotaur.github.io/barista-tool).
 - [ ] Free-mode toggle
 - [x] Design Update
 - [ ] A/B Testing
-- [ ] Presets
+- [x] Presets
 
 # Svelte building and running related commands
 

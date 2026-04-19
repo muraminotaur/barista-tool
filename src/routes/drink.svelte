@@ -2,10 +2,13 @@
 	import Ingredient from "./ingredient.svelte";
 
     import { presets } from "./shared.svelte";
-    import { uuid } from '$lib/utility';
+    import { uuid, deepCopy } from '$lib/utility';
 
     const DECI_PRECISION = 2;
 
+    //FIXME: the '| any[]' is there to silence errors, but this makes me think there's likely a 
+    //more elegant solution for this. what tools do I have to silence this and make it more secure/clearer to read?
+    //the solution is almost certainly an Interface now that I'm thinking about it lol. 
     let ingredients: [{ 
         id: string; 
         category: string; 
@@ -20,7 +23,7 @@
             }; 
         ounces: number;
         autofill: boolean 
-    }] = $state([
+    }] | any[] = $state([
         {
             id: "starter",
             category: "flavor",
@@ -46,6 +49,8 @@
         return ingredients.reduce((accumulator, currentValue) => accumulator + currentValue.ounces, 0);
     });
 
+    //TODO: i gotta clean this shit up lmao. i hate looking @ this. try putting everything into a nutrition array.
+    // move the reduce() into its own function that can take the target type as a parameter.
     let calories = $derived.by(() => {
         return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.calories * currentValue.ounces), 0).toFixed(DECI_PRECISION);
     });
@@ -88,13 +93,14 @@
         // console.log($state.snapshot(ingredients));
     }
 
-    //TODO: this.
     function onPresetChange() {
-        ingredients = [...currentPreset.preset];
+        ingredients = deepCopy(currentPreset.preset);
+        //do i need to send an update signal to the ingredients
         console.log("ingredients[] -> ", $state.snapshot(ingredients));
         console.log("currentPreset -> ", $state.snapshot(currentPreset));
     }
 
+    //FIXME: change this to use an Interface or something man, lmao.
     let currentPreset: {
         name: string;
         preset: [{ 

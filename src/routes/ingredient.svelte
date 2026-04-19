@@ -7,7 +7,17 @@
         category = $bindable(""), 
         ounces = $bindable(0), 
         autofill = $bindable(false),
-        ingredient = $bindable(),
+        ingredient = $bindable({
+                "name": "",
+                "subcategory": "",
+                nutrition: {
+                    "calories": 0,
+                    "fat": 0,
+                    "sodium": 0,
+                    "carbs": 0,
+                    "sugar": 0
+                }
+            }),
         onRemoval 
     } = $props();
 
@@ -54,51 +64,55 @@
     </div>
     
     {#snippet flavor()}
-        <select name="flavor-selection" bind:value={ingredient}>
-            <optgroup label="Sauces">
-                {#each flavors.Sauce as f_option}
-                    <option value={f_option}>
-                        {f_option.name}
-                    </option>
-                {/each}
-            </optgroup>
-            <optgroup label="Syrups">
-                {#each flavors.Syrup as f_option}
-                    <option value={f_option}>
-                        {f_option.name}
-                    </option>
-                {/each}
-            </optgroup>
-        </select>
-
+        {#key id}
+            <select name="flavor-selection" bind:value={ingredient}>
+                <optgroup label="Sauces">
+                    {#each flavors.Sauce as f_option}
+                        <option value={f_option}>
+                            {f_option.name}
+                        </option>
+                    {/each}
+                </optgroup>
+                <optgroup label="Syrups">
+                    {#each flavors.Syrup as f_option}
+                        <option value={f_option}>
+                            {f_option.name}
+                        </option>
+                    {/each}
+                </optgroup>
+            </select>
+        {/key}
         <input type="number" step=0.25 bind:value={ounces}>
         <label for="amount in ounces">oz</label>
     {/snippet}
 
     {#snippet milk()}
-        <select name="milk-selection" bind:value={ingredient}>
-            <optgroup label="Dairy">
-                {#each milks.Dairy as f_option}
-                    <option value={f_option}>
-                        {f_option.name}
-                    </option>
-                {/each}
-            </optgroup>
-            <optgroup label="Non-dairy">
-                {#each milks["Non-dairy"] as f_option}
-                    <option value={f_option}>
-                        {f_option.name}
-                    </option>
-                {/each}
-            </optgroup>
-            <optgroup label="Misc">
-                {#each milks.Misc as f_option}
-                    <option value={f_option}>
-                        {f_option.name}
-                    </option>
-                {/each}
-            </optgroup>
-        </select>
+    <!-- id aint the correct thing -->
+        {#key id}
+            <select name="milk-selection" bind:value={ingredient}>
+                <optgroup label="Dairy">
+                    {#each milks.Dairy as f_option}
+                        <option value={f_option}>
+                            {f_option.name}
+                        </option>
+                    {/each}
+                </optgroup>
+                <optgroup label="Non-dairy">
+                    {#each milks["Non-dairy"] as f_option}
+                        <option value={f_option}>
+                            {f_option.name}
+                        </option>
+                    {/each}
+                </optgroup>
+                <optgroup label="Misc">
+                    {#each milks.Misc as f_option}
+                        <option value={f_option}>
+                            {f_option.name}
+                        </option>
+                    {/each}
+                </optgroup>
+            </select>
+        {/key}
 
         <!--
         deciding to keep the ounces input for milks/water because 

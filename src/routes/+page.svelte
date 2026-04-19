@@ -17,34 +17,24 @@
 		</a>
 	</div>
 
-	<h5>Note about 1.2.1 Hotfix Update:</h5>
-	<p>
-		Freeze mix has been recalculated and is now accurate.
-	</p>
-
 	<h5>Additions</h5>
-	<p>
-		?
-	</p>
 	<ul>
-		<li>?</li>
+		<li>Presets!</li>
 	</ul>
+	<div class="subnote">
+		Currently there are presets for all Medium Iced <i>Jet Coffee</i> Jet Squad drinks. 
+		The UI for the select boxes don't update properly, but the underlying calculations are correct and present.
+	</div>
 	<h5>Changes</h5>
 	<ul>
-		<li>Moved array manipulation and regrouping function to <code>utility.ts</code> to optimize performance.</li>
-		<li>Set cold brew data to be similar to espresso data.</li>
+		<li>Set cold brew data to be similar to Starbucks' cold brew.</li>
+		<li>Design update.</li>
+		<li>Improved state management on ingredient array.</li>
 	</ul>
-	<h5>Things that don't work</h5>
+	<!-- <h5>Things that don't work</h5>
 	<ul>
 		<li>Autofill blocks/guided mode</li>
-		<li>Presets</li>
-		<li>Blended energy drinks</li>
-		<div class="subnote">
-			Still need to calculate base unit value. This has been difficult since the energy 
-			concentrate nutritional information isn't listed anywhere and I'm unable to find
-			resources that would point me to this. For now, assume it's very high in sugar and sodium.
-		</div>
-	</ul>
+	</ul> -->
 </div>
 
 <style lang="css">
@@ -114,11 +104,13 @@
 	}
 
 	.subnote {
-		font-style: italic;
 		font-size: 11pt;
 		background-color: var(--accent-highlight);
 		width: fit-content;
-		margin: 1ch;
+		margin: 2ch;
+		padding: 1ch;
+		border-radius: var(--border-radius);
+		border: var(--border-width) solid var(--accent);
 	}
 	ul li {
 		margin: 0%;

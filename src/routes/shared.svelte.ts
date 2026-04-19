@@ -1,5 +1,27 @@
 // is this a good way to implement read-only presets? i would just clear the ingredients array and assign its values to this.
 export const presets = [
+        {
+        name: "---",
+        preset: [
+            {
+                id: "00",
+                category: "",
+                ingredient: {
+                    "name": "",
+                    "subcategory": "",
+                    nutrition: {
+                        "calories": 0,
+                        "fat": 0,
+                        "sodium": 0,
+                        "carbs": 0,
+                        "sugar": 0
+                    }
+                },
+                autofill: false,
+                ounces: 1
+            }
+        ]
+    },
     {
         name: "Medium Iced Hero",
         preset: [
