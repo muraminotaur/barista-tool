@@ -1123,9 +1123,9 @@ export const drink_data = {
             }
         },
         {
-            "name": "Cold Brew Concentrate (MISSING)",
+            "name": "Cold Brew Concentrate (Approximation)",
             nutrition: {
-                "calories": 8,
+                "calories": 0.5,
                 "fat": 0,
                 "sodium": 0,
                 "carbs": 0,

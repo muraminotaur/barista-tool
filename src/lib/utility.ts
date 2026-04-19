@@ -54,3 +54,19 @@ export const uuid = () => {
             .slice(1)
             .join('-');
 }
+
+// =======================================================================================
+export function deepCopy(cloningTarget: any[]){
+    if (typeof structuredClone !== 'undefined' && 'structuredClone' in Window){
+        return structuredClone(cloningTarget);
+    }
+
+    return cloningTarget.map(a => {return {...a}});
+}
+
+// =======================================================================================
+// function for A/B testing
+// This will copy the current ingredients array into a new array and pre-calculate the nutritional information. 
+export function moveToBSlot(targetArray: any[]){
+
+}

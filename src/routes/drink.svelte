@@ -1,18 +1,29 @@
 <script lang="ts">
 	import Ingredient from "./ingredient.svelte";
 
-    // import { presets } from "./shared.svelte";
-    import { uuid } from '$lib/utility';
+    import { presets } from "./shared.svelte";
+    import { uuid, deepCopy } from '$lib/utility';
 
     const DECI_PRECISION = 2;
 
+    //FIXME: the '| any[]' is there to silence errors, but this makes me think there's likely a 
+    //more elegant solution for this. what tools do I have to silence this and make it more secure/clearer to read?
+    //the solution is almost certainly an Interface now that I'm thinking about it lol. 
     let ingredients: [{ 
         id: string; 
         category: string; 
-        ingredient?: any; 
+        ingredient: {
+                nutrition: {
+                "calories": 0,
+                "fat": 0,
+                "sodium": 0,
+                "carbs": 0,
+                "sugar": 0
+                }
+            }; 
         ounces: number;
         autofill: boolean 
-    }] = $state([
+    }] | any[] = $state([
         {
             id: "starter",
             category: "flavor",
@@ -32,22 +43,14 @@
         }
     ]);
 
-    let size = $state(16); //size should stay a variable user-set number to account for iced/hot espresso, i.e. not complete drinks.
-
-    //TODO: subtract current total ounces from target ounces.
-    let freeOunces = $derived.by(() => {
-        if (ingredients.length <= 0) return 0;
-        return ingredients.reduce((accumulator, currentValue) => accumulator + currentValue.ounces, 0);
-        //this currently doesnt do what it's supposed to.
-        //i still need to actually implement a system to set what the target ounces are so that this can function.
-    });
-
     //iterate ingredients array, add up all ounces
     let total = $derived.by(() => {
         if (ingredients.length <= 0) return 0;
         return ingredients.reduce((accumulator, currentValue) => accumulator + currentValue.ounces, 0);
     });
 
+    //TODO: i gotta clean this shit up lmao. i hate looking @ this. try putting everything into a nutrition array.
+    // move the reduce() into its own function that can take the target type as a parameter.
     let calories = $derived.by(() => {
         return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.calories * currentValue.ounces), 0).toFixed(DECI_PRECISION);
     });
@@ -90,13 +93,47 @@
         // console.log($state.snapshot(ingredients));
     }
 
-    // const onPresetChange = () => {
-    //     ingredients = currentPreset;
-    //     console.log($state.snapshot(ingredients));
-    //     console.log($state.snapshot(currentPreset));
-    // }
+    function onPresetChange() {
+        ingredients = deepCopy(currentPreset.preset);
+        //do i need to send an update signal to the ingredients
+        console.log("ingredients[] -> ", $state.snapshot(ingredients));
+        console.log("currentPreset -> ", $state.snapshot(currentPreset));
+    }
 
-    // let currentPreset = $state();
+    //FIXME: change this to use an Interface or something man, lmao.
+    let currentPreset: {
+        name: string;
+        preset: [{ 
+            id: string; 
+            category: string; 
+            ingredient: {
+                    nutrition: {
+                    "calories": 0,
+                    "fat": 0,
+                    "sodium": 0,
+                    "carbs": 0,
+                    "sugar": 0
+                    }
+                }; 
+            ounces: number;
+            autofill: boolean 
+    }]} = $state({
+        name: "fallback preset -- SOMETHING BROKE!",
+        preset: [{ 
+            id: "xx",
+            category: "flavor", 
+            ingredient: {
+                    nutrition: {
+                    "calories": 0,
+                    "fat": 0,
+                    "sodium": 0,
+                    "carbs": 0,
+                    "sugar": 0
+                    }
+                }, 
+            ounces: 0,
+            autofill: false 
+    }]});
 
     function logList(){
         console.log($state.snapshot(ingredients));
@@ -105,14 +142,14 @@
 </script>
 
 <div class="drink-comp">
-    <h2> - drink component - </h2>
+    <h2>Beverage Creation</h2>
     <hr>
 
-    <!-- <select name="preset" bind:value={currentPreset} onchange={onPresetChange}>
+    <select name="preset" bind:value={currentPreset} onchange={onPresetChange}>
         {#each presets as preset}
             <option value={preset}>{preset.name}</option>
         {/each}
-    </select> -->
+    </select>
 
     <!-- <input type="number" bind:value={size}>
     <label for="Size in Fl. Oz.">Drink size? (In fl.oz.) DOES NOTHING RIGHT NOW</label>
@@ -178,12 +215,13 @@ div {
 .drink-comp, .nutrition {
     margin: 1ch auto;
     padding: 2ch;
-    border: 0.5ch solid var(--primary-3);
-    border-radius: 2ch;
+    border: var(--border-width) solid var(--secondary-1);
+    border-radius: var(--border-radius);
 }
 
 .drink-comp {
     width: 60%;
+    min-height: 300px;
 }
 .nutrition {
     width: fit-content;
@@ -195,8 +233,8 @@ td {
 
 hr {
     color: var(--primary-2);
-    border: 0.5ch solid var(--primary-3);
-    border-radius: 2ch;
+    border: var(--border-width) solid var(--secondary-1);
+    border-radius: var(--border-radius);
 }
 
 @media only screen and (max-width: 640px) {

@@ -1,5 +1,27 @@
 // is this a good way to implement read-only presets? i would just clear the ingredients array and assign its values to this.
 export const presets = [
+        {
+        name: "---",
+        preset: [
+            {
+                id: "00",
+                category: "",
+                ingredient: {
+                    "name": "",
+                    "subcategory": "",
+                    nutrition: {
+                        "calories": 0,
+                        "fat": 0,
+                        "sodium": 0,
+                        "carbs": 0,
+                        "sugar": 0
+                    }
+                },
+                autofill: false,
+                ounces: 1
+            }
+        ]
+    },
     {
         name: "Medium Iced Hero",
         preset: [
@@ -17,6 +39,7 @@ export const presets = [
                         "sugar": 23
                     }
                 },
+                autofill: false,
                 ounces: 1
             },
             {
@@ -33,6 +56,7 @@ export const presets = [
                         "sugar": 1
                     }
                 },
+                autofill: false,
                 ounces: 9
             },
             {
@@ -48,6 +72,7 @@ export const presets = [
                         "sugar": 0
                     }
                 },
+                autofill: false,
                 ounces: 2
             },
         ]
@@ -69,6 +94,7 @@ export const presets = [
                         "sugar": 23
                     }
                 },
+                autofill: false,
                 ounces: 2
             },
             {
@@ -85,6 +111,7 @@ export const presets = [
                         "sugar": 1
                     }
                 },
+                autofill: false,
                 ounces: 4
             },
             {
@@ -100,6 +127,7 @@ export const presets = [
                         "sugar": 0
                     }
                 },
+                autofill: false,
                 ounces: 6
             },
         ]
@@ -121,6 +149,7 @@ export const presets = [
                         "sugar": 21
                     }
                 },
+                autofill: false,
                 ounces: 1
             },
             {
@@ -137,6 +166,7 @@ export const presets = [
                         "sugar": 1
                     }
                 },
+                autofill: false,
                 ounces: 9
             },
             {
@@ -152,6 +182,7 @@ export const presets = [
                         "sugar": 0
                     }
                 },
+                autofill: false,
                 ounces: 2
             },
         ]
@@ -173,6 +204,7 @@ export const presets = [
                         "sugar": 23
                     }
                 },
+                autofill: false,
                 ounces: 0.5
             },
             {
@@ -189,6 +221,7 @@ export const presets = [
                         "sugar": 20
                     }
                 },
+                autofill: false,
                 ounces: 0.5
             },
             {
@@ -205,6 +238,7 @@ export const presets = [
                         "sugar": 1
                     }
                 },
+                autofill: false,
                 ounces: 9
             },
             {
@@ -220,6 +254,7 @@ export const presets = [
                         "sugar": 0
                     }
                 },
+                autofill: false,
                 ounces: 2
             },
         ]
@@ -241,6 +276,7 @@ export const presets = [
                         "sugar": 26
                     }
                 },
+                autofill: false,
                 ounces: 1
             },
             {
@@ -257,6 +293,7 @@ export const presets = [
                         "sugar": 1
                     }
                 },
+                autofill: false,
                 ounces: 9
             },
             {
@@ -272,6 +309,7 @@ export const presets = [
                         "sugar": 0
                     }
                 },
+                autofill: false,
                 ounces: 2
             },
         ]
@@ -293,6 +331,7 @@ export const presets = [
                         "sugar": 22
                     }
                 },
+                autofill: false,
                 ounces: 1
             },
             {
@@ -309,6 +348,7 @@ export const presets = [
                         "sugar": 3.375
                     }
                 },
+                autofill: false,
                 ounces: 9
             },
             {
@@ -324,6 +364,7 @@ export const presets = [
                         "sugar": 0
                     }
                 },
+                autofill: false,
                 ounces: 2
             },
         ]
@@ -345,6 +386,7 @@ export const presets = [
                         "sugar": 23
                     }
                 },
+                autofill: false,
                 ounces: 1
             },
             {
@@ -361,6 +403,7 @@ export const presets = [
                         "sugar": 3.375
                     }
                 },
+                autofill: false,
                 ounces: 9
             },
             {
@@ -376,6 +419,7 @@ export const presets = [
                         "sugar": 0
                     }
                 },
+                autofill: false,
                 ounces: 2
             },
         ]
@@ -397,6 +441,7 @@ export const presets = [
                         "sugar": 20
                     }
                 },
+                autofill: false,
                 ounces: 1
             },
             {
@@ -413,6 +458,7 @@ export const presets = [
                         "sugar": 3.375
                     }
                 },
+                autofill: false,
                 ounces: 7
             },
             {
@@ -428,6 +474,7 @@ export const presets = [
                         "sugar": 0
                     }
                 },
+                autofill: false,
                 ounces: 4
             },
         ]
@@ -449,6 +496,7 @@ export const presets = [
                         "sugar": 23
                     }
                 },
+                autofill: false,
                 ounces: 1
             },
             {
@@ -465,6 +513,7 @@ export const presets = [
                         "sugar": 3.375
                     }
                 },
+                autofill: false,
                 ounces: 9
             },
             {
@@ -480,6 +529,7 @@ export const presets = [
                         "sugar": 0
                     }
                 },
+                autofill: false,
                 ounces: 2
             },
         ]

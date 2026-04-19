@@ -7,7 +7,17 @@
         category = $bindable(""), 
         ounces = $bindable(0), 
         autofill = $bindable(false),
-        ingredient = $bindable(),
+        ingredient = $bindable({
+                "name": "",
+                "subcategory": "",
+                nutrition: {
+                    "calories": 0,
+                    "fat": 0,
+                    "sodium": 0,
+                    "carbs": 0,
+                    "sugar": 0
+                }
+            }),
         onRemoval 
     } = $props();
 
@@ -54,51 +64,55 @@
     </div>
     
     {#snippet flavor()}
-        <select name="flavor-selection" bind:value={ingredient}>
-            <optgroup label="Sauces">
-                {#each flavors.Sauce as f_option}
-                    <option value={f_option}>
-                        {f_option.name}
-                    </option>
-                {/each}
-            </optgroup>
-            <optgroup label="Syrups">
-                {#each flavors.Syrup as f_option}
-                    <option value={f_option}>
-                        {f_option.name}
-                    </option>
-                {/each}
-            </optgroup>
-        </select>
-
+        {#key id}
+            <select name="flavor-selection" bind:value={ingredient}>
+                <optgroup label="Sauces">
+                    {#each flavors.Sauce as f_option}
+                        <option value={f_option}>
+                            {f_option.name}
+                        </option>
+                    {/each}
+                </optgroup>
+                <optgroup label="Syrups">
+                    {#each flavors.Syrup as f_option}
+                        <option value={f_option}>
+                            {f_option.name}
+                        </option>
+                    {/each}
+                </optgroup>
+            </select>
+        {/key}
         <input type="number" step=0.25 bind:value={ounces}>
         <label for="amount in ounces">oz</label>
     {/snippet}
 
     {#snippet milk()}
-        <select name="milk-selection" bind:value={ingredient}>
-            <optgroup label="Dairy">
-                {#each milks.Dairy as f_option}
-                    <option value={f_option}>
-                        {f_option.name}
-                    </option>
-                {/each}
-            </optgroup>
-            <optgroup label="Non-dairy">
-                {#each milks["Non-dairy"] as f_option}
-                    <option value={f_option}>
-                        {f_option.name}
-                    </option>
-                {/each}
-            </optgroup>
-            <optgroup label="Misc">
-                {#each milks.Misc as f_option}
-                    <option value={f_option}>
-                        {f_option.name}
-                    </option>
-                {/each}
-            </optgroup>
-        </select>
+    <!-- id aint the correct thing -->
+        {#key id}
+            <select name="milk-selection" bind:value={ingredient}>
+                <optgroup label="Dairy">
+                    {#each milks.Dairy as f_option}
+                        <option value={f_option}>
+                            {f_option.name}
+                        </option>
+                    {/each}
+                </optgroup>
+                <optgroup label="Non-dairy">
+                    {#each milks["Non-dairy"] as f_option}
+                        <option value={f_option}>
+                            {f_option.name}
+                        </option>
+                    {/each}
+                </optgroup>
+                <optgroup label="Misc">
+                    {#each milks.Misc as f_option}
+                        <option value={f_option}>
+                            {f_option.name}
+                        </option>
+                    {/each}
+                </optgroup>
+            </select>
+        {/key}
 
         <!--
         deciding to keep the ounces input for milks/water because 
@@ -107,14 +121,8 @@
         slightly more user effort. (i'm really the only likely user so 
         who cares (i don't!))
         -->
-        {#if !autofill}
-            <input type="number" step=1 bind:value={ounces}>
-            <label for="amount in ounces">oz</label>
-        {/if}
-        {#if autofill}
-            <input type="number" step=1 bind:value={targetAutofillOunces}>
-            <label for="Target ounces">Target size in ounces</label>
-        {/if}
+        <input type="number" step=1 bind:value={ounces}>
+        <label for="amount in ounces">oz</label>
     {/snippet}
 
     {#snippet base()}
@@ -131,17 +139,9 @@
         <label for="amount in ounces">oz</label>
     {/snippet}
 
-    {#snippet autofilloption()}
-        <div class="autofill-option">
-            <label for="x">Set this to autofill? <input type="button" bind:value={autofill} onclick={setAutofill}></label>
-        </div>
-    {/snippet}
-
     {#if category === 'flavor'}
         {@render flavor()}
     {:else if category === 'milk'}
-        <!-- {@render autofilloption()} -->
-        <!-- temporarily commenting this out until it's complete to avoid confusion. -->
         {@render milk()}
     {:else if category === 'base'}
         {@render base()}
@@ -164,10 +164,13 @@
     }
 
     .ingredient-container {
-        background: var(--primary-2);
+        background: var(--primary-1);
         padding: 1ch;
+        margin: 0 1ch 1ch 0;
+        border-radius: var(--border-radius);
     }
-    button{
+
+    button {
         max-width: fit-content;
     }
 

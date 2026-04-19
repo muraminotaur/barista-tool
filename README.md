@@ -35,9 +35,9 @@ The site is hosted [here](https://muraminotaur.github.io/barista-tool).
 - [x] Total ounces display
 - [x] Changelog/Notes section
 - [ ] Free-mode toggle
-- [ ] Design Update
+- [x] Design Update
 - [ ] A/B Testing
-- [ ] Presets
+- [x] Presets
 
 # Svelte building and running related commands
 

@@ -4,7 +4,8 @@
 	let { children } = $props();
 
 	//this is for build/load performance
-	export const prerender = true;
+	// export const prerender = true;
+	//okay so this does not go here and will not effect performance at all.
 </script>
 
 <svelte:head>
