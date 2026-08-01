@@ -15,7 +15,7 @@
 	<h3>Mino's Notes</h3>
 	<div class="version">
 		<a href="https://github.com/muraminotaur/barista-tool" target="_blank" rel="noreferrer">
-			<code>version-1.3.1 (hereford)</code>
+			<code>version-1.4 (hanwoo)</code>
 		</a>
 	</div>
 
