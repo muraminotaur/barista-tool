@@ -1185,11 +1185,11 @@ export const drink_data = {
         {
             "name": "Chiller",
             nutrition: {
-                "calories": 19.605,
-                "fat": 0.3125,
-                "sodium": 8.125,
-                "carbs": 4.406,
-                "sugar": 4.178
+                "calories": 12.31,
+                "fat": 0.31,
+                "sodium": 8.12,
+                "carbs": 2.52,
+                "sugar": 2.37
             }
         },
         {
@@ -1215,6 +1215,16 @@ export const drink_data = {
         {
             "name": "Lemonade",
             nutrition: {
+                "calories": 14.61,
+                "fat": 0,
+                "sodium": 0,
+                "carbs": 3.78,
+                "sugar": 3.61
+            }
+        },
+        {
+            "name": "Lemonade (old mix)",
+            nutrition: {
                 "calories": 29.21,
                 "fat": 0,
                 "sodium": 0,
@@ -1222,6 +1232,7 @@ export const drink_data = {
                 "sugar": 7.22
             }
         },
+        
         {
             "name": "Apple Juice",
             nutrition: {

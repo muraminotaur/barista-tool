@@ -13,7 +13,7 @@
 	<h3>Mino's Notes</h3>
 	<div class="version">
 		<a href="https://github.com/muraminotaur/barista-tool" target="_blank" rel="noreferrer">
-			<code>version-1.3 (hereford)</code>
+			<code>version-1.3.1 (hereford)</code>
 		</a>
 	</div>
 
@@ -27,9 +27,8 @@
 	</div>
 	<h5>Changes</h5>
 	<ul>
-		<li>Set cold brew data to be similar to Starbucks' cold brew.</li>
-		<li>Design update.</li>
-		<li>Improved state management on ingredient array.</li>
+		<li>Change of lemonade formula in home store, data updated.</li>
+		<li style="margin-left:2em">Because of this, chiller mix was also updated.</li>
 	</ul>
 	<!-- <h5>Things that don't work</h5>
 	<ul>
