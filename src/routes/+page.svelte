@@ -1,7 +1,9 @@
 <script lang="ts">
 	import Drink from "./drink.svelte";
+	import Header from "$lib/components/Header.svelte";
 </script>
 
+<Header/>
 <div class="title">
 	<h1>BaristaToolkit</h1>
 	<p>Nutritional information calculator</p>

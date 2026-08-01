@@ -2,28 +2,10 @@
 	import Ingredient from "./ingredient.svelte";
 
     import { presets } from "./shared.svelte";
-    import { uuid, deepCopy } from '$lib/utility';
+    import { DECI_PRECISION, uuid, deepCopy, drinkCalc, type DrinkNode, type Preset } from '$lib/utility';
 
-    const DECI_PRECISION = 2;
 
-    //FIXME: the '| any[]' is there to silence errors, but this makes me think there's likely a 
-    //more elegant solution for this. what tools do I have to silence this and make it more secure/clearer to read?
-    //the solution is almost certainly an Interface now that I'm thinking about it lol. 
-    let ingredients: [{ 
-        id: string; 
-        category: string; 
-        ingredient: {
-                nutrition: {
-                "calories": 0,
-                "fat": 0,
-                "sodium": 0,
-                "carbs": 0,
-                "sugar": 0
-                }
-            }; 
-        ounces: number;
-        autofill: boolean 
-    }] | any[] = $state([
+    let ingredients: DrinkNode[] = $state([
         {
             id: "starter",
             category: "flavor",
@@ -49,29 +31,22 @@
         return ingredients.reduce((accumulator, currentValue) => accumulator + currentValue.ounces, 0);
     });
 
-    //TODO: i gotta clean this shit up lmao. i hate looking @ this. try putting everything into a nutrition array.
-    // move the reduce() into its own function that can take the target type as a parameter.
-    let calories = $derived.by(() => {
-        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.calories * currentValue.ounces), 0).toFixed(DECI_PRECISION);
-    });
-    let fat = $derived.by(() => {
-        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.fat * currentValue.ounces), 0).toFixed(DECI_PRECISION);
-    });
-    let sodium = $derived.by(() => {
-        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.sodium * currentValue.ounces), 0).toFixed(DECI_PRECISION);
-    });
-    let carbs = $derived.by(() => {
-        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.carbs * currentValue.ounces), 0).toFixed(DECI_PRECISION);
-    });
-    let sugar = $derived.by(() => {
-        return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.sugar * currentValue.ounces), 0).toFixed(DECI_PRECISION);
-    });
-   
+    // let calories = $derived.by(() => {
+    //     return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.calories * currentValue.ounces), 0).toFixed(DECI_PRECISION);
+    // });
+    let calories = $derived(drinkCalc(ingredients, "calories"));
+    let fat = $derived(drinkCalc(ingredients, "fat"));
+    let sodium = $derived(drinkCalc(ingredients, "sodium"));
+    let carbs = $derived(drinkCalc(ingredients, "carbs"));
+    let sugar = $derived(drinkCalc(ingredients, "sugar"));
+    
     function addIngredient() {
         ingredients.push({
             id: uuid(),
             category: "",
             ingredient: {
+                name: "",
+                subcategory: "",
                 nutrition: {
                 "calories": 0,
                 "fat": 0,
@@ -88,41 +63,21 @@
     function handleDeletion({ id }: {id: string}) {
         const index = ingredients.findIndex(t => t.id === id);
         ingredients.splice(index, 1);
-
-        // console.log("handle deletion reached in drink.svelte. component " + id + "\nTarget was " + id + "\nIndex was " + index);
-        // console.log($state.snapshot(ingredients));
     }
 
     function onPresetChange() {
         ingredients = deepCopy(currentPreset.preset);
         //do i need to send an update signal to the ingredients
-        console.log("ingredients[] -> ", $state.snapshot(ingredients));
-        console.log("currentPreset -> ", $state.snapshot(currentPreset));
     }
 
-    //FIXME: change this to use an Interface or something man, lmao.
-    let currentPreset: {
-        name: string;
-        preset: [{ 
-            id: string; 
-            category: string; 
-            ingredient: {
-                    nutrition: {
-                    "calories": 0,
-                    "fat": 0,
-                    "sodium": 0,
-                    "carbs": 0,
-                    "sugar": 0
-                    }
-                }; 
-            ounces: number;
-            autofill: boolean 
-    }]} = $state({
+    let currentPreset: Preset = $state({
         name: "fallback preset -- SOMETHING BROKE!",
         preset: [{ 
             id: "xx",
             category: "flavor", 
             ingredient: {
+                name: "",
+                subcategory: "",
                     nutrition: {
                     "calories": 0,
                     "fat": 0,

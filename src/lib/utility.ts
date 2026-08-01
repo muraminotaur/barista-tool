@@ -1,4 +1,13 @@
 // =======================================================================================
+// Constants
+// Used for menus in ingredient.svelte components.
+export const flavors = arrayRegroup(drink_data.flavor, "subcategory");
+export const milks = arrayRegroup(drink_data.milk, "subcategory");
+// Decimal precision
+export const DECI_PRECISION = 2;
+
+
+// =======================================================================================
 import { drink_data } from "./drink_data";
 
 function arrayRegroup(array: any[], key: string) {
@@ -14,10 +23,6 @@ function arrayRegroup(array: any[], key: string) {
         return acc;
     }, {});
 }
-
-//Used for menus in ingredient.svelte components.
-export const flavors = arrayRegroup(drink_data.flavor, "subcategory");
-export const milks = arrayRegroup(drink_data.milk, "subcategory");
 
 // =======================================================================================
 // In this script I'm setting up the UUID system for referencing ingredients in the array.
@@ -66,7 +71,54 @@ export function deepCopy(cloningTarget: any[]){
 
 // =======================================================================================
 // function for A/B testing
-// This will copy the current ingredients array into a new array and pre-calculate the nutritional information. 
-export function moveToBSlot(targetArray: any[]){
+// This will copy the current ingredients array into a new array 
+// and pre-calculate the nutritional information. 
+export function moveToBSlot(targetArray: DrinkNode[]){
 
+}
+
+
+// =======================================================================================
+// types for ingredient array
+export interface NutritionFacts {
+    calories: number;
+    fat: number;
+    sodium: number;
+    carbs: number;
+    sugar: number;
+}
+
+export interface Ingredient {
+    name: string;
+    subcategory: string;
+    nutrition: NutritionFacts;
+}
+
+export interface DrinkNode {
+    id: string;
+    category: string;
+    ingredient: Ingredient;
+    ounces: number;
+    autofill: boolean;
+}
+
+// =======================================================================================
+// type for presets
+export interface Preset {
+    name: string;
+    preset: DrinkNode[];
+}
+
+// =======================================================================================
+// nutritional information calculation function
+function getProperty<T, K extends keyof T>(object: T, key: K) {
+    return object[key];
+}
+
+export function drinkCalc(targetArray: DrinkNode[], inputField: any) {
+    return targetArray.reduce(
+        (accumulator, currentNode) => 
+            accumulator + 
+            (getProperty(currentNode.ingredient.nutrition, inputField) * currentNode.ounces)
+    , 0).toFixed(DECI_PRECISION);
 }
