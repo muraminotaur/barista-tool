@@ -46,3 +46,6 @@ nutrition:
     "sugar": 4.178
 }
 ```
+
+### the Markdown Svelte tutorial i'm referencing
+[src](https://joshcollinsworth.com/blog/build-static-sveltekit-markdown-blog#adding-markdown-to-sveltekit-with-mdsvex)

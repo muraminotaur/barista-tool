@@ -111,10 +111,13 @@ export interface Preset {
 
 // =======================================================================================
 // nutritional information calculation function
+// helper function to properly access object properties in a type-safe way
 function getProperty<T, K extends keyof T>(object: T, key: K) {
     return object[key];
 }
 
+// abstracted version of the old nutritional information $derived.by() functions.
+// a.k.a. The Correct Way i should have been doing things.
 export function drinkCalc(targetArray: DrinkNode[], inputField: any) {
     return targetArray.reduce(
         (accumulator, currentNode) => 

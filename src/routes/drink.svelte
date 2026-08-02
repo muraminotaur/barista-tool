@@ -31,9 +31,6 @@
         return ingredients.reduce((accumulator, currentValue) => accumulator + currentValue.ounces, 0);
     });
 
-    // let calories = $derived.by(() => {
-    //     return ingredients.reduce((accumulator, currentValue) => accumulator + (currentValue.ingredient.nutrition.calories * currentValue.ounces), 0).toFixed(DECI_PRECISION);
-    // });
     let calories = $derived(drinkCalc(ingredients, "calories"));
     let fat = $derived(drinkCalc(ingredients, "fat"));
     let sodium = $derived(drinkCalc(ingredients, "sodium"));
