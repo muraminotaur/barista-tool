@@ -2,6 +2,12 @@
 title: Drink Recipes
 ---
 
+<script>
+    import Header from '$lib/components/Header.svelte';
+</script>
+
+<Header/>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap');
 
@@ -53,13 +59,15 @@ td {
 }
 </style>
 
+# Drink Recipes
+
 *written by minotaur. last updated 2026-07-14*
 
 Entries with a ⭐ are barista favorites. 
 
 Every entry is spiritually out of 5, but i don't know what the point in keeping a 1/5 coffee in a "hall of fame" list is so everything is 3/5 and up.
 
-# Coffees
+## Coffees
 
 | Drink | Rating | Author |
 | :-- | :-- | --- |
@@ -114,9 +122,9 @@ Every entry is spiritually out of 5, but i don't know what the point in keeping 
 | **Untitled.** *Espresso.* (SF) English Toffee, French Vanilla. Milks to use: Whole, Pistachio, Oat. | ✔✔ | Mino |
 | **AF Vandevorst SS08.** *Espresso.* Gingerbread, Maple, Vanilla. Milks to use: Whole, Oat. | ✔✔ | Mino |
 | **Macadamia Butter Toffee.** *Espresso.* English Toffee, Chocolate Macadamia Nut. Splash of vanilla. Dark chocolate drizzle. Milks to use: Any. | ✔✔ | Mino |
-| **Cherry Hazelnut Tart.** *Espresso.* Cherry, Hazelnut. Cinnamon sprinkles on top. Milks to use: Oat, 2%, Whole, Macadamia. | ✔✔✔ | Mino |
+| ⭐ **Cherry Hazelnut Tart.** *Espresso.* Cherry, Hazelnut. Cinnamon sprinkles on top. Milks to use: Oat, 2%, Whole, Macadamia. | ✔✔✔ | Mino |
 | **Untitled.** *Espresso.* White Chocolate, Brown Sugar Cinnamon, Vanilla/Vanilla Bean. Milks to use: Any. | ✔✔✔ | Mino |
-| **Maple Glazed Donut.** *Espresso.* Maple, Cupcake, White Chocolate. Milks to use: Any. | ✔✔✔ | Mino |
+| ⭐ **Maple Glazed Donut.** *Espresso.* Maple, Cupcake, White Chocolate. Milks to use: Any. | ✔✔✔ | Mino |
 | **Mint Chocolate Chip Ice Cream.** *Espresso.* Creme de Menthe, CCCD, Vanilla. Milks to use: Any. | ✔✔ | Mino |
 | ⭐ **Ginger Snap.** *Espresso.* Gingerbread, Cinnamon, Vanilla. Honey drizzle. Milks to use: Oat. | ✔✔✔ | Mino |
 | ⭐ **English Toffee Crunch Cheesecake.** *Espresso.* Cheesecake, English Toffee, Vanilla. Caramel drizzle. Milks to use: Oat. | ✔✔✔ | Mino |
@@ -135,7 +143,7 @@ Every entry is spiritually out of 5, but i don't know what the point in keeping 
 | **Unknown.** *Espresso.* Maple, Chocolate Chip Cookie Dough, White Chocolate. Milks to use: Whole, Oat. | ✔✔✔ | Mino |
 | **Cookies and Cream.** *Espresso.* White Chocolate, Dark Chocolate, Vanilla. Milks to use: Whole, Oat. | ✔✔✔ | Mino |
 
-# Not Coffees
+## Not Coffees
 
 | Drink | Rating | Author |
 | :-- | :-- | --- |
@@ -185,9 +193,9 @@ Every entry is spiritually out of 5, but i don't know what the point in keeping 
 | **Unknown.** *Energy Drink.* Grapefruit, Mango, Lime, Orange | ✔ | Mino |
 | **Traffic Light.** *Energy Drink.* Kiwi, Pineapple, Pomegranate. Make as a gradient. | ? | Mino |
 | **Yuzu Mango Mint Approximation.** *Energy Drink.* Lemon, Grapefruit, Mango, Peppermint. *"Yuzu is like a cross between Lemon, Grapefruit, and Orange."* Might work better without lemon, as its citrus is very strong. | ✔✔ | Mino |
-| **Unknown.** *Energy Drink + Lemonade 50/50.* Blueberry, Mango. Pomegranate drizzle? | ✔✔✔ | Mino |
+| **Unknown.** *Energy Drink + Lemonade 50/50.* Blueberry, Mango. Raspberry drizzle. | ✔✔✔ | Mino |
 
-#### Misc
+### Misc
 
 Cold Foam combinations from Addie:
 - Strawberry + Vanilla
