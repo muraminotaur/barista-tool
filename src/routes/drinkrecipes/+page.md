@@ -61,7 +61,7 @@ td {
 
 # Drink Recipes
 
-*written by minotaur. last updated 2026-07-14*
+*written by minotaur. last updated 2026-08-04*
 
 Entries with a ⭐ are barista favorites. 
 
