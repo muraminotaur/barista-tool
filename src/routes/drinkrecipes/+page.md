@@ -57,6 +57,16 @@ td {
     border: 1px solid #777;
     padding: 0.5em;
 }
+
+@media only screen and (max-width: 640px) {
+    * {
+        font-size: 11pt;
+        width: auto;
+    }
+    table {
+        margin: 1em;
+    }
+}
 </style>
 
 # Drink Recipes
