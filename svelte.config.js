@@ -22,11 +22,6 @@ const config = {
         paths: {
             base: process.argv.includes('dev') ? '/barista-tool' : process.env.BASE_PATH
         },
-        // this fixes $lib references to components no longer working.
-        // wish i knew that was deprecated before i restructured everything to use that.
-        alias: {
-            $lib: './src/lib'
-        }
     }
 };
 

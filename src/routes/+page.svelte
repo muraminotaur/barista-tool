@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Drink from "$lib/components/Drink.svelte";
-    import Header from "$lib/components/Header.svelte";
+    import Drink from "./components/Drink.svelte";
+    import Header from "./components/Header.svelte";
 </script>
 
 <Header/>
