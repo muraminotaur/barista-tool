@@ -1,5 +1,5 @@
 <header>
-    <a href="/">Home</a>
+    <a href="/barista-tool">Home</a>
     <a href="drinkrecipes">Drink Recipes</a>
 </header>
 
