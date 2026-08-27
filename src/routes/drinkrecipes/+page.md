@@ -17,7 +17,6 @@ title: Drink Recipes
     --text-1: #000;
     --text-2: #333;
     
-    font-weight: 300;
     font-size: 12pt;
     font-kerning: -0.05ch;
     color: var(--text-1);
@@ -27,6 +26,7 @@ title: Drink Recipes
 * {
     background-color: #F7EDDE;
     font-family: "Geist", Arial, sans-serif;
+    font-weight: 300;
     margin: 1em auto;
     width: 60%;
 }
@@ -76,6 +76,7 @@ td {
 Entries with a ⭐ are barista favorites. 
 
 Every entry is spiritually out of 5, but i don't know what the point in keeping a 1/5 coffee in a "hall of fame" list is so everything is 3/5 and up.
+Any "?" in a rating field just means I haven't tried it yet.
 
 ## Coffees
 
@@ -172,8 +173,7 @@ Every entry is spiritually out of 5, but i don't know what the point in keeping 
 | ⭐ **Spiced Berry Matcha.** *Matcha.* Blackberry, Cinnamon, Honey. Milks to use: Almond. | ✔✔✔ | Chris |
 | ⭐ **A Really Fucking Good Chai.** *Chai.* Blackberry, Brown Sugar Cinnamon, Vanilla Bean. Milks to use: Oat, 2%, Whole. Cinnamon sprinkles on top (optional). If you have sugar free chai mix, use that so that the final drink isn't too sweet. | ✔✔✔ | @mintybongwater + Mino |
 | **Untitled.** *Chai.* Cinnamon, Chocolate Macadamia Nut, Vanilla. Milks to use: Oat, 2%. | ✔✔ | Mino |
-| **Morningstar.** *Chai+Espresso.* Irish Cream, Vanilla Bean. +1 Shot of Espresso. Milks to use: Macadamia Nut Milk, Oat. If possible, please use Sugar Free Chai mix or a less sweet brand. Best served hot. | ✔✔ | Mino |
-| **Chai Espresso Martini Base.** *Chai + Espresso.* Irish Cream. Coconut milk. Shots of Vodka (at home, of course). | ✔ | | 
+| **Morningstar.** *Chai+Espresso.* Irish Cream, Vanilla Bean. +1 Shot of Espresso. Milks to use: Macadamia Nut Milk, Oat. If possible, please use Sugar Free Chai mix or a less sweet brand. Best served hot. | ✔✔ | Mino | 
 | **Maggie's Lemon Hot Chocolate.** *Hot Chocolate.* Lemon syrup. Chocolate milk. | ? | Maggie |
 | **Mock Martini Lemonade.** *Lemonade.* Amaretto, Lime. | ✔✔✔ | Maggie |
 | **Maddi's Lemonade.** *Lemonade.* Cupcake, Lavender. | ✔✔ | Lantz |
