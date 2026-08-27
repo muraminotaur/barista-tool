@@ -3,7 +3,7 @@ title: Drink Recipes
 ---
 
 <script>
-    import Header from './Header.svelte';
+    import Header from '../components/Header.svelte';
 </script>
 
 <Header/>
