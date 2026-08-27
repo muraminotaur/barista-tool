@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Ingredient from "./ingredient.svelte";
+	import Ingredient from "$lib/components/Ingredient.svelte";
 
     import { presets } from "$lib/shared.svelte";
     import { DECI_PRECISION, uuid, deepCopy, drinkCalc, type DrinkNode, type Preset } from '$lib/utility';
