@@ -22,6 +22,7 @@
     <h5>Additions</h5>
     <ul>
         <li>Presets!</li>
+        <li>Drink Recipe Table!</li>
     </ul>
     <div class="subnote">
         Currently there are presets for all Medium Iced <i>Jet Coffee</i> Jet Squad drinks. 
