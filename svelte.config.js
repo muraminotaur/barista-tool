@@ -17,10 +17,10 @@ const config = {
 
     kit: {
         adapter: adapter({
-            fallback: 'barista-toolkit'
+            fallback: '404.html'
         }),
         paths: {
-            base: process.argv.includes('dev') ? '/barista-tool' : process.env.BASE_PATH
+            base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
         },
     }
 };
