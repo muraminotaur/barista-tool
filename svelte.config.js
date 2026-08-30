@@ -17,7 +17,7 @@ const config = {
 
     kit: {
         adapter: adapter({
-            fallback: 'index.html'
+            fallback: 'barista-toolkit'
         }),
         paths: {
             base: process.argv.includes('dev') ? '/barista-tool' : process.env.BASE_PATH

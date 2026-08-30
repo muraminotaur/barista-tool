@@ -4,6 +4,7 @@
 </script>
 
 <Header/>
+
 <div class="title">
     <h1>BaristaToolkit</h1>
     <p>Nutritional information calculator</p>
@@ -99,7 +100,6 @@
     .notes h3 {
         text-align: center;
         font-weight: 400;
-        font-style: italic;
     }
     .notes code {
         background-color: var(--accent-highlight);
